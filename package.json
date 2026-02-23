@@ -1,0 +1,36 @@
+{
+  "name": "edge-unified-gateway",
+  "version": "0.0.1",
+  "description": "dns, nameserver, proxy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobscale/edge-unified-gateway.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jobscale/edge-unified-gateway/issues"
+  },
+  "homepage": "https://github.com/jobscale/edge-unified-gateway#readme",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint",
+    "pretest": "date -Iseconds",
+    "posttest": "npm run lint",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand --coverage --collectCoverage --verbose"
+  },
+  "pre-commit": "test",
+  "dependencies": {
+    "dns-packet": "^5.6.1"
+  },
+  "devDependencies": {
+    "@jobscale/eslint-plugin-standard": "^0.0.12",
+    "eslint": "^10.0.1",
+    "eslint-plugin-jest": "^29.15.0",
+    "jest": "^30.2.0",
+    "pre-commit": "^1.2.2"
+  }
+}
