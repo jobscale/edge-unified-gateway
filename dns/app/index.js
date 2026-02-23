@@ -73,7 +73,7 @@ export class Nameserver {
   async enter(name, type, opts = { answers: [] }) {
     if (!opts.visited) opts.visited = new Set();
     if (opts.visited.has(name)) {
-      logger.warn(`CNAME loop detected for ${name}`);
+      logger.warn(JSON.stringify({ 'CNAME loop detected': name }));
       return opts.answers;
     }
     opts.visited.add(name);
@@ -97,7 +97,7 @@ export class Nameserver {
           ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
           : 120;
         this.cache[key].expires = now + expiresIn;
-        logger.info(`Query resolver for ${name} (${type}) ${JSON.stringify(this.cache[key])}`);
+        logger.info(JSON.stringify({ 'Query resolver': `${name} (${type})`, cache: this.cache[key] }));
       }
       const { answers, authorities } = this.cache[key];
       opts.answers.push(...answers);
@@ -115,7 +115,7 @@ export class Nameserver {
       exist.list.forEach(item => {
         opts.answers.push({ name, ...item });
       });
-      logger.info(`Static for ${name} (${type}) ${JSON.stringify(opts.answers)}`);
+      logger.info(JSON.stringify({ Static: `${name} (${type})`, answers: opts.answers }));
       if (!opts.authorities) opts.authorities = [authority];
     } else if (searches.find(search => name.endsWith(`.${search}`))) {
       // in search to glue
@@ -160,7 +160,8 @@ export class Nameserver {
     const [question] = questions;
     const name = question.name.toLowerCase();
     const { type } = question;
-    const { answers, authorities } = await this.enter(name, type).catch(e => logger.error(e) || []);
+    const { answers, authorities } = await this.enter(name, type)
+    .catch(e => logger.error(JSON.stringify({ enter: e })) ?? { answers: [] });
     const flags = answers.length ? dnsPacket.RECURSION_AVAILABLE : 0;
     const rcode = answers.length ? 0 : 3;
     const response = dnsPacket.encode({
