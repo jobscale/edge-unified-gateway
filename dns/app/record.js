@@ -43,11 +43,11 @@ const setupSearch = (search, record) => {
     const { Name: name, Type: type, RData: data, TTL: ttl } = item;
     if (!record[name]) record[name] = [];
     if (record[name].find(v => v.type.toUpperCase() === 'CNAME')) {
-      logger.warn(JSON.stringify({ 'Already CNAME': JSON.stringify(item) }));
+      logger.warn(JSON.stringify({ 'Already CNAME': item }));
       return;
     }
     if (record[name].length && type.toUpperCase() === 'CNAME') {
-      logger.warn(JSON.stringify({ 'Already Multiple CNAME': JSON.stringify(item) }));
+      logger.warn(JSON.stringify({ 'Already Multiple CNAME': item }));
       return;
     }
     record[name].push({ type, data, ttl });
