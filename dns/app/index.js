@@ -97,6 +97,14 @@ export class Nameserver {
 
     const now = Math.floor(Date.now() / 1000);
 
+    const findFirst = answers => {
+      const aData = answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
+      if (aData) return aData;
+      const cname = answers?.find(answer => ['CNAME'].includes(answer.type))?.data;
+      if (cname) return cname;
+      return 'no resolved';
+    };
+
     const resolverViaCache = async dns => {
       const key = `${name}-${type}`;
       if (!this.cache[key] || this.cache[key].expires < now) {
@@ -111,8 +119,7 @@ export class Nameserver {
           ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
           : 120;
         this.cache[key].expires = now + expiresIn;
-        const data = this.cache[key].answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
-        const host = `${name} (${type}) ${data ?? 'no resolved'}`;
+        const host = `${name} (${type}) ${findFirst(this.cache[key].answers)}`;
         if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Query: host }));
         cache.access.set(host, Date.now());
         if (!JEST_TEST) {
@@ -136,8 +143,7 @@ export class Nameserver {
       exist.list.forEach(item => {
         opts.answers.push({ name, ...item });
       });
-      const data = opts.answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
-      const host = `${name} (${type}) ${data ?? 'no resolved'}`;
+      const host = `${name} (${type}) ${findFirst(opts.answers)}`;
       if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Static: host }));
       cache.access.set(host, Date.now());
       if (!opts.authorities) opts.authorities = [authority];
