@@ -19,7 +19,7 @@ const tcpServer = async (port, bind = '127.0.0.1') => {
     const length = buffer.readUInt16BE(0);
     const msg = buffer.slice(2, 2 + length);
     const response = await parser.parseDNS(msg)
-    .catch(e => logger.warn(JSON.stringify({ [e.message]: msg })));
+    .catch(e => logger.warn(JSON.stringify({ parseDNS: e.message, msg })));
     if (response) {
       const lengthBuf = Buffer.alloc(2);
       lengthBuf.writeUInt16BE(response.length);
@@ -30,7 +30,7 @@ const tcpServer = async (port, bind = '127.0.0.1') => {
   const tcpConnecter = socket => {
     socket.on('data', buffer => {
       tcpReceiver(buffer, socket)
-      .catch(e => logger.warn(JSON.stringify({ [e.message]: 'tcpReceiver' })));
+      .catch(e => logger.warn(JSON.stringify({ tcpReceiver: e.message })));
     });
     socket.on('error', e => logger.error(JSON.stringify({ 'TCP socket error': e.message })));
   };
@@ -46,14 +46,14 @@ const udpServer = async (port, bind = '127.0.0.1') => {
   const server = dgram.createSocket('udp4');
   const udpReceiver = async (msg, rinfo) => {
     const response = await parser.parseDNS(msg)
-    .catch(e => logger.warn(JSON.stringify({ parseDNS: e.cause ?? e.code, [e.message]: rinfo })));
+    .catch(e => logger.warn(JSON.stringify({ parseDNS: e.message, rinfo })));
     if (response) {
       server.send(response, 0, response.length, rinfo.port, rinfo.address);
     }
   };
   server.on('message', (msg, rinfo) => {
     udpReceiver(msg, rinfo)
-    .catch(e => logger.warn(JSON.stringify({ udpReceiver: e.cause ?? e.code, [e.message]: rinfo })));
+    .catch(e => logger.warn(JSON.stringify({ udpReceiver: e.message, rinfo })));
   });
   server.on('error', e => logger.error(JSON.stringify({ 'UDP server error': e.message })));
   server.bind(port, bind, () => {

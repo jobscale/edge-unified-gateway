@@ -71,7 +71,7 @@ export const resolver = async (name, type, nss, transport = 'udp') => {
   const resolveFn = transport === 'tcp' ? resolveTCP : resolveUDP;
   for (const ns of nss) {
     const result = await resolveFn(name, type, ns)
-    .catch(e => logger.warn(JSON.stringify({ [e.message]: `${name} ${type}` })) || {});
+    .catch(e => logger.warn(JSON.stringify({ resolveFn: e.message, name, type })) ?? {});
     if (result.answers) return result;
   }
   return { answers: [] };
