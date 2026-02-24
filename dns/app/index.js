@@ -111,8 +111,9 @@ export class Nameserver {
           ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
           : 120;
         this.cache[key].expires = now + expiresIn;
-        const host = `${name} (${type})`;
-        if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), 'Query resolver': host }));
+        const data = this.cache[key].answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
+        const host = `${name} (${type}) ${data ?? 'no resolved'}`;
+        if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Query: host }));
         cache.access.set(host, Date.now());
         if (!JEST_TEST) {
           clearTimeout(cache.id);
@@ -135,8 +136,9 @@ export class Nameserver {
       exist.list.forEach(item => {
         opts.answers.push({ name, ...item });
       });
-      const host = `${name} (${type})`;
-      if (!cache.access.get(host)) logger.info(JSON.stringify({ 'Static resolver': host }));
+      const data = opts.answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
+      const host = `${name} (${type}) ${data}`;
+      if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Static: host }));
       cache.access.set(host, Date.now());
       if (!opts.authorities) opts.authorities = [authority];
     } else if (searches.find(search => name.endsWith(`.${search}`))) {
