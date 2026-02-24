@@ -61,6 +61,11 @@ export class Nameserver {
   }
 
   searchRecords(name, type, search, recordSet) {
+    // IPpv6 NXDOMAIN
+    if (type === 'AAAA') return { answers: [] };
+    // IPv6 PTR (ip6.arpa) REFUSED
+    if (type === 'PTR' && name.endsWith('.ip6.arpa')) return { answers: [] };
+
     const candidates = Object.entries(recordSet).map(([sub, list]) => {
       const match = list.filter(v => {
         if (v.type === type) return true;
