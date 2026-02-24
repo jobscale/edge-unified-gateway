@@ -15,21 +15,27 @@ const logger = new Proxy(console, {
 const tcpServer = async (port, bind = '127.0.0.1') => {
   const transport = 'tcp';
   const parser = await new Nameserver().createServer({ transport });
-  const tcpReceiver = async (buffer, socket) => {
-    const length = buffer.readUInt16BE(0);
-    const msg = buffer.slice(2, 2 + length);
+  const tcpReceiver = async (chunk, opts) => {
+    opts.buffer = Buffer.concat([opts.buffer, chunk]);
+    if (opts.buffer.length < 2) return;
+    const length = opts.buffer.readUInt16BE(0);
+    if (opts.buffer.length < length + 2) return;
+    const msg = opts.buffer.slice(2, 2 + length);
+    opts.buffer = opts.buffer.slice(2 + length);
     const response = await parser.parseDNS(msg)
     .catch(e => logger.warn(JSON.stringify({ parseDNS: e.message, msg })));
     if (response) {
       const lengthBuf = Buffer.alloc(2);
       lengthBuf.writeUInt16BE(response.length);
-      socket.write(Buffer.concat([lengthBuf, response]));
+      opts.socket.write(Buffer.concat([lengthBuf, response]));
     }
-    socket.end();
+    opts.socket.end();
   };
   const tcpConnecter = socket => {
-    socket.on('data', buffer => {
-      tcpReceiver(buffer, socket)
+    const opts = { socket, buffer: Buffer.alloc(0) };
+    socket.on('data', chunk => {
+      logger.debug(JSON.stringify({ socket, 'chunk.length': chunk.length }));
+      tcpReceiver(chunk, opts)
       .catch(e => logger.warn(JSON.stringify({ tcpReceiver: e.message })));
     });
     socket.on('error', e => logger.error(JSON.stringify({ 'TCP socket error': e.message })));
@@ -52,6 +58,7 @@ const udpServer = async (port, bind = '127.0.0.1') => {
     }
   };
   server.on('message', (msg, rinfo) => {
+    if (msg.length < 17) return;
     udpReceiver(msg, rinfo)
     .catch(e => logger.warn(JSON.stringify({ udpReceiver: e.message, rinfo })));
   });
