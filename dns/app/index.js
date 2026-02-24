@@ -107,7 +107,7 @@ export class Nameserver {
       if (aData) return aData;
       const cname = answers?.find(answer => ['CNAME'].includes(answer.type))?.data;
       if (cname) return cname;
-      return 'no resolved';
+      return answers?.[0]?.data ?? 'no resolved';
     };
 
     const resolverViaCache = async dns => {
