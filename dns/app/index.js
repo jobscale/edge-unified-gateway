@@ -191,7 +191,7 @@ export class Nameserver {
     const name = question.name.toLowerCase();
     const { type } = question;
     const { answers, authorities } = await this.enter(name, type)
-    .catch(e => logger.error(JSON.stringify({ enter: e })) ?? { answers: [] });
+    .catch(e => logger.error(JSON.stringify({ enter: e.cause ?? e.code, [e.message]: `${name} ${type}` })) ?? { answers: [] });
     const flags = answers.length ? dnsPacket.RECURSION_AVAILABLE : 0;
     const rcode = answers.length ? 0 : 3;
     const response = dnsPacket.encode({
