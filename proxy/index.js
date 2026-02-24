@@ -11,7 +11,7 @@ const SPORT = Number.parseInt(process.env.SPORT, 10) || 3443;
 
 const logger = new Proxy(console, {
   get(target, property) {
-    return (...args) => target[property](`[${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
+    return (...args) => target[property](`[proxy ${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
   },
 });
 

@@ -4,11 +4,25 @@ import {
   searches, records, denys, denyAnswer, forwarder, glueNS, authority,
 } from './record.js';
 
+const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
+
 const logger = new Proxy(console, {
   get(target, property) {
-    return (...args) => target[property](`[${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
+    return (...args) => target[property](`[dns ${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
   },
 });
+
+const cache = {
+  access: new Map(),
+  TTL: 60 * 60 * 1000,
+
+  clean() {
+    const expired = Date.now() - cache.TTL;
+    for (const [host, last] of cache.access.entries()) {
+      if (last < expired) cache.access.delete(host);
+    }
+  },
+};
 
 export class Nameserver {
   constructor() {
@@ -97,7 +111,13 @@ export class Nameserver {
           ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
           : 120;
         this.cache[key].expires = now + expiresIn;
-        logger.info(JSON.stringify({ 'Query resolver': `${name} (${type})`, cache: this.cache[key] }));
+        const host = `${name} (${type})`;
+        if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), 'Query resolver': host }));
+        cache.access.set(host, Date.now());
+        if (!JEST_TEST) {
+          clearTimeout(cache.id);
+          cache.id = setTimeout(cache.clean, 60_000);
+        }
       }
       const { answers, authorities } = this.cache[key];
       opts.answers.push(...answers);
@@ -115,7 +135,9 @@ export class Nameserver {
       exist.list.forEach(item => {
         opts.answers.push({ name, ...item });
       });
-      logger.info(JSON.stringify({ Static: `${name} (${type})`, answers: opts.answers }));
+      const host = `${name} (${type})`;
+      if (!cache.access.get(host)) logger.info(JSON.stringify({ 'Static resolver': host }));
+      cache.access.set(host, Date.now());
       if (!opts.authorities) opts.authorities = [authority];
     } else if (searches.find(search => name.endsWith(`.${search}`))) {
       // in search to glue

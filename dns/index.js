@@ -8,7 +8,7 @@ const PORT = Number.parseInt(process.env.PORT, 10) || 53;
 
 const logger = new Proxy(console, {
   get(target, property) {
-    return (...args) => target[property](`[${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
+    return (...args) => target[property](`[dns ${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
   },
 });
 
