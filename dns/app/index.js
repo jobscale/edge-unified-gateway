@@ -137,7 +137,7 @@ export class Nameserver {
         opts.answers.push({ name, ...item });
       });
       const data = opts.answers?.find(answer => ['A', 'AAAA'].includes(answer.type))?.data;
-      const host = `${name} (${type}) ${data}`;
+      const host = `${name} (${type}) ${data ?? 'no resolved'}`;
       if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Static: host }));
       cache.access.set(host, Date.now());
       if (!opts.authorities) opts.authorities = [authority];
