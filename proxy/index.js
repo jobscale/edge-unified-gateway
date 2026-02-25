@@ -5,9 +5,9 @@ import { swallow, proxyConnect } from './app/index.js';
 import { router } from './app/route.js';
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
-const BIND = process.env.BIND || '0.0.0.0';
-const PORT = Number.parseInt(process.env.PORT, 10) || 3128;
-const SPORT = Number.parseInt(process.env.SPORT, 10) || 3443;
+const PROXY_BIND = process.env.DNS_BIND || '0.0.0.0';
+const PROXY_PORT = Number.parseInt(process.env.PROXY_PORT, 10) || 3128;
+const PROXY_SPORT = Number.parseInt(process.env.PROXY_SPORT, 10) || 3443;
 
 const logger = new Proxy(console, {
   get(target, property) {
@@ -43,8 +43,8 @@ const httpsServer = (port, bind = '127.0.0.1') => {
 
 const main = async () => {
   if (JEST_TEST) return;
-  httpServer(PORT, BIND);
-  httpsServer(SPORT, BIND);
+  httpServer(PROXY_PORT, PROXY_BIND);
+  httpsServer(PROXY_SPORT, PROXY_BIND);
 };
 
 export default main();

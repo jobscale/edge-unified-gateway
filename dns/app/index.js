@@ -44,7 +44,7 @@ export class Nameserver {
     await Promise.all(
       glueNS.map(name => resolver(name, 'A', forwarder)),
     )
-    .then(res => res.map(({ answers: [item] }) => item.data))
+    .then(res => res.map(({ answers: [item] }) => item?.data))
     .then(glue => {
       this.transport = transport;
       this.forwarder = forwarder;

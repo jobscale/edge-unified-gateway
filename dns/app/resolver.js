@@ -8,9 +8,8 @@ const logger = new Proxy(console, {
   },
 });
 
-const resolveUDP = (query, ns) => new Promise((resolve, reject) => {
+const resolveUDP = (query, question, ns) => new Promise((resolve, reject) => {
   const socket = dgram.createSocket('udp4');
-  const [question] = query.questions;
   const timeout = setTimeout(() => {
     socket.close();
     reject(new Error('UDP socket timed out'));
@@ -35,13 +34,12 @@ const resolveUDP = (query, ns) => new Promise((resolve, reject) => {
   socket.send(query, 53, ns, checkFail);
 });
 
-const resolveTCP = (query, ns) => new Promise((resolve, reject) => {
+const resolveTCP = (query, question, ns) => new Promise((resolve, reject) => {
   const socket = net.connect(53, ns, () => {
     const lengthBuf = Buffer.alloc(2);
     lengthBuf.writeUInt16BE(query.length);
     socket.write(Buffer.concat([lengthBuf, query]));
   });
-  const [question] = query.questions;
   const timeout = setTimeout(() => {
     socket.destroy();
     reject(new Error('TCP socket timed out'));
@@ -81,7 +79,7 @@ export const resolver = async (name, type, nss, transport = 'udp') => {
   });
   const resolveFn = transport === 'tcp' ? resolveTCP : resolveUDP;
   for (const ns of nss) {
-    const result = await resolveFn(query, ns)
+    const result = await resolveFn(query, question, ns)
     .catch(e => logger.warn(JSON.stringify({ [transport]: e.message, ns, ...question })) ?? {});
     if (result.answers) return result;
   }

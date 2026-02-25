@@ -3,8 +3,8 @@ import dgram from 'dgram';
 import { Nameserver } from './app/index.js';
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
-const BIND = process.env.BIND || '0.0.0.0';
-const PORT = Number.parseInt(process.env.PORT, 10) || 53;
+const DNS_BIND = process.env.DNS_BIND || '0.0.0.0';
+const DNS_PORT = Number.parseInt(process.env.DNS_PORT, 10) || 53;
 
 const logger = new Proxy(console, {
   get(target, property) {
@@ -70,8 +70,8 @@ const udpServer = async (port, bind = '127.0.0.1') => {
 
 const main = async () => {
   if (JEST_TEST) return;
-  tcpServer(PORT, BIND);
-  udpServer(PORT, BIND);
+  tcpServer(DNS_PORT, DNS_BIND);
+  udpServer(DNS_PORT, DNS_BIND);
 };
 
 export default main();
