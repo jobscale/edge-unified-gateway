@@ -252,12 +252,6 @@
     "TTL": 122
   },
   {
-    "Name": "noble",
-    "Type": "A",
-    "RData": "54.205.185.5",
-    "TTL": 122
-  },
-  {
     "Name": "proxy",
     "Type": "A",
     "RData": "172.16.6.77",
@@ -300,21 +294,9 @@
     "TTL": 122
   },
   {
-    "Name": "us",
-    "Type": "A",
-    "RData": "54.205.185.5",
-    "TTL": 122
-  },
-  {
     "Name": "*.us",
     "Type": "CNAME",
     "RData": "us.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "vpn",
-    "Type": "A",
-    "RData": "54.205.185.5",
     "TTL": 122
   },
   {
