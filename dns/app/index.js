@@ -6,9 +6,23 @@ import {
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
 
+const formatTimestamp = (ts = Date.now(), withoutTimezone = false) => {
+  const timestamp = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(new Date(ts));
+  if (withoutTimezone) return timestamp;
+  return `${timestamp}+09:00`;
+};
+
 const logger = new Proxy(console, {
   get(target, property) {
-    return (...args) => target[property](`[dns ${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
+    return (...args) => target[property](`[dns ${property.toUpperCase()}]`.padEnd(8, ' '), formatTimestamp(), ...args);
   },
 });
 
@@ -125,7 +139,7 @@ export class Nameserver {
           : 120;
         this.cache[key].expires = now + expiresIn;
         const host = `${name} (${type}) ${findFirst(this.cache[key].answers)}`;
-        if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Query: host }));
+        if (!cache.access.get(host)) logger.info(JSON.stringify({ Query: host }));
         cache.access.set(host, Date.now());
         if (!JEST_TEST) {
           clearTimeout(cache.id);
@@ -149,7 +163,7 @@ export class Nameserver {
         opts.answers.push({ name, ...item });
       });
       const host = `${name} (${type}) ${findFirst(opts.answers)}`;
-      if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), Static: host }));
+      if (!cache.access.get(host)) logger.info(JSON.stringify({ Static: host }));
       cache.access.set(host, Date.now());
       if (!opts.authorities) opts.authorities = [authority];
     } else if (searches.find(search => name.endsWith(`.${search}`))) {

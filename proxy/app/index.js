@@ -3,9 +3,23 @@ import { allowedIp, denyDomain } from './security.js';
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
 
+const formatTimestamp = (ts = Date.now(), withoutTimezone = false) => {
+  const timestamp = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(new Date(ts));
+  if (withoutTimezone) return timestamp;
+  return `${timestamp}+09:00`;
+};
+
 const logger = new Proxy(console, {
   get(target, property) {
-    return (...args) => target[property](`[proxy ${property.toUpperCase()}]`.padEnd(8, ' '), ...args);
+    return (...args) => target[property](`[proxy ${property.toUpperCase()}]`.padEnd(8, ' '), formatTimestamp(), ...args);
   },
 });
 
@@ -38,13 +52,13 @@ const parseError = e => {
   return `${code} ${address}:${port}`;
 };
 export const swallow = e => ['ECONNRESET', 'EPIPE']
-.includes(e?.code) || logger.error(JSON.stringify({ ts: new Date(), 'Socket error:': parseError(e) }));
+.includes(e?.code) || logger.error(JSON.stringify({ 'Socket error:': parseError(e) }));
 
 export const proxyConnect = (req, clientSocket, head) => {
   clientSocket.on('error', swallow);
   const [host, port] = req.url.split(':');
   const ip = clientSocket.remoteAddress.replace(/^::ffff:/, '');
-  if (!cache.access.get(host)) logger.info(JSON.stringify({ ts: new Date(), host, access: ip }));
+  if (!cache.access.get(host)) logger.info(JSON.stringify({ host, access: ip }));
   // cache stock or refresh
   cache.access.set(host, Date.now());
   // cache clean - 暇なときに実施
@@ -55,7 +69,7 @@ export const proxyConnect = (req, clientSocket, head) => {
 
   // acl IP or ドメインを拒否
   if (!allowedIp(ip) || denyDomain(host)) {
-    if (!cache.blocking.get(host)) logger.warn(JSON.stringify({ ts: new Date(), host, blocking: ip }));
+    if (!cache.blocking.get(host)) logger.warn(JSON.stringify({ host, blocking: ip }));
     // cache stock or refresh
     cache.blocking.set(host, Date.now());
     clientSocket.write(
