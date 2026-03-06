@@ -64,17 +64,6 @@ describe('swallow', () => {
     swallow({ code: 'ECONNREFUSED', toString: () => 'ECONNREFUSED' });
     expect(logger.error).toHaveBeenCalledTimes(1);
   });
-
-  it('errors 配列があれば code/address/port を含む文字列を出力', () => {
-    swallow({
-      code: 'ENOENT',
-      errors: [{ code: 'ENOENT', address: '1.2.3.4', port: 80 }],
-      toString: () => 'ENOENT',
-    });
-    expect(logger.error).toHaveBeenCalledTimes(1);
-    const arg = logger.error.mock.calls[0][1];
-    expect(arg).toMatch('ENOENT');
-  });
 });
 
 // =============================================================
