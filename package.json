@@ -1,6 +1,6 @@
 {
   "name": "edge-unified-gateway",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "dns, nameserver, proxy",
   "repository": {
     "type": "git",
