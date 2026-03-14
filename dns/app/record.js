@@ -7,8 +7,6 @@ const logger = new Proxy(console, {
   },
 });
 
-const json = JSON.parse(await fs.readFile('package.json'));
-
 export const forwarder = ['8.8.8.8', '8.8.4.4'];
 export const glueNS = ['NS1.GSLB13.SAKURA.NE.JP', 'NS2.GSLB13.SAKURA.NE.JP'];
 export const authority = {
@@ -54,7 +52,7 @@ const setupSearch = (search, record) => {
   });
 };
 searches.forEach(search => {
-  records[search] = { version: [{ type: 'TXT', data: json.version, ttl: 300 }] };
+  records[search] = {};
   setupSearch(search, records[search]);
 });
 

@@ -14,8 +14,8 @@ describe('Nameserver enter() actual name resolution tests', () => {
   ['first check', 'cache check'].forEach(type => {
     describe(`${type} phase`, () => {
       describe('static ip address', () => {
-        it('should follow TXT record for version.internal', async () => {
-          const result = await ns.enter('version.internal', 'TXT');
+        it('should follow TXT record for version', async () => {
+          const result = await ns.enter('version', 'TXT');
           const follow = result.answers.find(a => a.type === 'TXT');
           expect(follow).toBeDefined();
           expect(/^\d+\.\d+\.\d+$/.test(follow.data)).toBe(true);
@@ -26,13 +26,6 @@ describe('Nameserver enter() actual name resolution tests', () => {
           const answer = result.answers.find(a => a.name === 'dark.internal');
           expect(answer).toBeDefined();
           expect(answer.data).toBe('172.16.6.77');
-        });
-
-        it('should follow TXT record for version.jsx.jp', async () => {
-          const result = await ns.enter('version.jsx.jp', 'TXT');
-          const follow = result.answers.find(a => a.type === 'TXT');
-          expect(follow).toBeDefined();
-          expect(/^\d+\.\d+\.\d+$/.test(follow.data)).toBe(true);
         });
 
         it('should resolve root domain jsx.jp with A record', async () => {
@@ -61,7 +54,6 @@ describe('Nameserver enter() actual name resolution tests', () => {
       describe('listup domain check', () => {
         const LIST = [
           'proxy.jsx.jp',
-          'version.jsx.jp',
           'black.jsx.jp',
           'pink.jsx.jp',
           'dark.jsx.jp',

@@ -38,6 +38,8 @@ const cache = {
     for (const [host, last] of cache.blocking.entries()) {
       if (last < quiet) cache.blocking.delete(host);
     }
+    global.proxyCacheSize = cache.access.size;
+    global.blockingCacheSize = cache.blocking.size;
   },
 };
 

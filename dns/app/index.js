@@ -1,3 +1,4 @@
+import fs from 'fs/promises';
 import dnsPacket from 'dns-packet';
 import { resolver } from './resolver.js';
 import {
@@ -35,6 +36,7 @@ const cache = {
     for (const [host, last] of cache.access.entries()) {
       if (last < expired) cache.access.delete(host);
     }
+    global.dnsCacheSize = cache.access.size;
   },
 };
 
@@ -103,6 +105,17 @@ export class Nameserver {
     if (type === 'AAAA') return opts;
     // IPv6 PTR (ip6.arpa) REFUSED
     if (type === 'PTR' && name.endsWith('.ip6.arpa')) return opts;
+    // custom TXT record for version and cache
+    if (type === 'TXT' && name === 'version') {
+      const json = JSON.parse(await fs.readFile('package.json'));
+      opts.answers.push({ name, type: 'TXT', data: json.version, ttl: 300 });
+      return opts;
+    }
+    if (type === 'TXT' && name === 'cache') {
+      const data = `dns:${global.dnsCacheSize || 0} proxy:${global.proxyCacheSize || 0} blocking:${global.blockingCacheSize || 0}`;
+      opts.answers.push({ name, type: 'TXT', data, ttl: 300 });
+      return opts;
+    }
 
     if (!opts.visited) opts.visited = new Set();
     if (opts.visited.has(name)) {
