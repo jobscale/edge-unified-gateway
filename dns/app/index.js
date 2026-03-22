@@ -182,13 +182,9 @@ export class Nameserver {
     } else if (searches.find(search => name.endsWith(`.${search}`))) {
       // in search to glue
       await resolverViaCache(this.glue);
-      // finish resolve do not recursive
-      return opts;
     } else {
       // other to forwarder
       await resolverViaCache(this.forwarder);
-      // finish resolve do not recursive
-      return opts;
     }
 
     if (type === 'MX') {
@@ -200,6 +196,7 @@ export class Nameserver {
       return opts;
     }
     if (type !== 'A') return opts;
+    if (opts.answers.some(item => item.type === 'A')) return opts;
     if (!opts.resolved) opts.resolved = [];
     opts.aliases = opts.answers.filter(item => {
       if (opts.resolved.find(v => v.data === item.data)) return false;

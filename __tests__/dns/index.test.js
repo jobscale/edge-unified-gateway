@@ -53,6 +53,7 @@ describe('Nameserver enter() actual name resolution tests', () => {
 
       describe('listup domain check', () => {
         const LIST = [
+          '_.jsx.jp',
           'proxy.jsx.jp',
           'black.jsx.jp',
           'pink.jsx.jp',

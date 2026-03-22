@@ -6,13 +6,17 @@ body {
   display: grid;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 </style>`;
+const title = '<title>Special ECO System</title>';
 
 export const router = (req, res) => {
   if (req.url === '/' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(`${style}<main><h1>Special ECO System</h1></main>`);
+    res.end(`${style}${title}<main><h1>Special ECO System</h1></main>`);
   } else if (['/health'].includes(req.url) && ['GET', 'POST'].includes(req.method)) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify('Healthy'));
@@ -21,7 +25,7 @@ export const router = (req, res) => {
       'Content-Type': 'text/html',
       'X-Method': req.method,
     });
-    res.end(`${style}<main><h1>Method Not Allowed</h1></main>`);
+    res.end(`${style}${title}<main><h1>Method Not Allowed</h1></main>`);
   } else {
     res.writeHead(407, {
       'Content-Type': 'application/json',
