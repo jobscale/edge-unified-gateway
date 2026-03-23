@@ -46,7 +46,7 @@ describe('Nameserver enter() actual name resolution tests', () => {
           const result = await ns.enter('jsx.jp', 'MX');
           const mx = result.answers.find(a => a.type === 'MX');
           expect(mx).toBeDefined();
-          expect(mx.data.exchange).toMatch(/amazonaws\.com/);
+          expect(mx.data.exchange).toMatch(/mailu\.jsx\.jp/);
           expect(Number.parseInt(mx.data.preference, 10)).toBeGreaterThan(0);
         });
       });

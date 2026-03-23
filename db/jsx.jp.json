@@ -6,6 +6,12 @@
     "TTL": 122
   },
   {
+    "Name": "2603",
+    "Type": "A",
+    "RData": "18.208.119.99",
+    "TTL": 122
+  },
+  {
     "Name": "@",
     "Type": "A",
     "RData": "216.24.57.4",
@@ -14,19 +20,31 @@
   {
     "Name": "@",
     "Type": "MX",
-    "RData": "10 inbound-smtp.us-east-1.amazonaws.com.",
+    "RData": "10 mailu.jsx.jp.",
     "TTL": 122
   },
   {
     "Name": "@",
     "Type": "TXT",
-    "RData": "v=spf1 include:amazonses.com ~all",
+    "RData": "v=spf1 mx a:mailu.jsx.jp ~all",
     "TTL": 122
   },
   {
     "Name": "_dmarc",
     "Type": "TXT",
-    "RData": "v=DMARC1;p=quarantine;pct=100;fo=1",
+    "RData": "v=DMARC1; p=reject; rua=mailto:admin@jsx.jp; ruf=mailto:admin@jsx.jp; adkim=s; aspf=s",
+    "TTL": 122
+  },
+  {
+    "Name": "jsx.jp._report._dmarc",
+    "Type": "TXT",
+    "RData": "v=DMARC1;",
+    "TTL": 122
+  },
+  {
+    "Name": "dkim._domainkey",
+    "Type": "TXT",
+    "RData": "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVI0MapzYk5d+2P7DqTkMU0ObRZLOwsswenJvafmrDnIUBYPW9zGPqVMXuwQDIViHWiBksPSUo/UDd4+FrQSMa992sjzZfVbd+Kjm3O7iPtLAVjSl81a2dBYbp/NAblcVI4gjDcYess9vdMf4oaH2GiA+/eS3qgrnyj/M3ATNikgPfNnfpOP79z4mf3Sq0sm3h3Miy3OR88H+3bqEoM+L1PvzBTKmPcZF9EYf33tGhMQntEzwZAB+dHbT5l5l/oYrswoWv0lTuE87mmSvQqGFRuCLZAUWYpeVql6YOk17aqFySj8I11DS4f0YWNcWoRU9oAFiNfOBfnrvAB6Fvc2fQIDAQAB",
     "TTL": 122
   },
   {
@@ -39,6 +57,12 @@
     "Name": "*.a",
     "Type": "CNAME",
     "RData": "a.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "bastion",
+    "Type": "A",
+    "RData": "15.152.59.0",
     "TTL": 122
   },
   {
@@ -168,6 +192,18 @@
     "TTL": 122
   },
   {
+    "Name": "dev",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 122
+  },
+  {
+    "Name": "*.dev",
+    "Type": "CNAME",
+    "RData": "dev.jsx.jp.",
+    "TTL": 122
+  },
+  {
     "Name": "in",
     "Type": "A",
     "RData": "172.16.6.25",
@@ -183,6 +219,12 @@
     "Name": "mac.in",
     "Type": "A",
     "RData": "172.16.179.208",
+    "TTL": 122
+  },
+  {
+    "Name": "noble.in",
+    "Type": "A",
+    "RData": "10.10.8.139",
     "TTL": 122
   },
   {
@@ -216,6 +258,12 @@
     "TTL": 122
   },
   {
+    "Name": "noble.lo",
+    "Type": "A",
+    "RData": "10.10.8.139",
+    "TTL": 122
+  },
+  {
     "Name": "mac",
     "Type": "A",
     "RData": "172.16.6.88",
@@ -228,15 +276,15 @@
     "TTL": 122
   },
   {
-    "Name": "mx",
-    "Type": "MX",
-    "RData": "10 feedback-smtp.eu-west-1.amazonses.com.",
+    "Name": "mail",
+    "Type": "CNAME",
+    "RData": "us.jsx.jp.",
     "TTL": 122
   },
   {
-    "Name": "mx",
-    "Type": "TXT",
-    "RData": "v=spf1 include:amazonses.com ~all",
+    "Name": "mailu",
+    "Type": "A",
+    "RData": "18.208.119.99",
     "TTL": 122
   },
   {
@@ -249,6 +297,18 @@
     "Name": "*.n100",
     "Type": "CNAME",
     "RData": "n100.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "os",
+    "Type": "A",
+    "RData": "15.152.59.0",
+    "TTL": 122
+  },
+  {
+    "Name": "*.os",
+    "Type": "CNAME",
+    "RData": "os.jsx.jp.",
     "TTL": 122
   },
   {
@@ -272,7 +332,7 @@
   {
     "Name": "s",
     "Type": "CNAME",
-    "RData": "ujcjp.onrender.com.",
+    "RData": "jobscale.github.io.",
     "TTL": 122
   },
   {
@@ -288,15 +348,39 @@
     "TTL": 122
   },
   {
+    "Name": "stg",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 122
+  },
+  {
+    "Name": "*.stg",
+    "Type": "CNAME",
+    "RData": "stg.jsx.jp.",
+    "TTL": 122
+  },
+  {
     "Name": "trixie",
     "Type": "A",
     "RData": "172.16.6.107",
     "TTL": 122
   },
   {
+    "Name": "us",
+    "Type": "A",
+    "RData": "18.208.119.99",
+    "TTL": 122
+  },
+  {
     "Name": "*.us",
     "Type": "CNAME",
     "RData": "us.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "vpn",
+    "Type": "A",
+    "RData": "18.208.119.99",
     "TTL": 122
   },
   {
@@ -333,6 +417,12 @@
     "Name": "*.x",
     "Type": "CNAME",
     "RData": "x.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "xfce",
+    "Type": "A",
+    "RData": "172.16.6.55",
     "TTL": 122
   }
 ]
