@@ -13,12 +13,6 @@
   },
   {
     "Name": "@",
-    "Type": "A",
-    "RData": "216.24.57.4",
-    "TTL": 122
-  },
-  {
-    "Name": "@",
     "Type": "MX",
     "RData": "10 mailu.jsx.jp.",
     "TTL": 122
