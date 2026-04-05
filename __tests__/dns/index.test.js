@@ -32,7 +32,7 @@ describe('Nameserver enter() actual name resolution tests', () => {
           const result = await ns.enter('jsx.jp', 'A');
           const answer = result.answers.find(a => a.name === 'jsx.jp');
           expect(answer).toBeDefined();
-          expect(answer.data).toBe('66.241.125.124');
+          expect(answer.data).toBe('66.241.124.27');
         });
 
         it('should follow CNAME record for jsx.jp', async () => {
