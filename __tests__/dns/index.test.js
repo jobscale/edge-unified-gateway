@@ -51,12 +51,16 @@ describe('Nameserver enter() actual name resolution tests', () => {
         });
       });
 
-      describe('listup domain check', () => {
-        const LIST = [
+      describe('static domain check', () => {
+        const STATIC_LIST = [
           '_.jsx.jp',
           'proxy.jsx.jp',
           'black.jsx.jp',
+          'white.jsx.jp',
+          'yellow.jsx.jp',
           'pink.jsx.jp',
+          'blue.jsx.jp',
+          'green.jsx.jp',
           'dark.jsx.jp',
           'n100.jsx.jp',
           'mac.jsx.jp',
@@ -68,6 +72,23 @@ describe('Nameserver enter() actual name resolution tests', () => {
           'x.jsx.jp',
           'a.jsx.jp',
           'in.jsx.jp',
+        ];
+
+        STATIC_LIST.forEach(domain => {
+          test(`[static] should resolve ${domain} with A record`, async () => {
+            const result = await ns.enter(domain, 'A');
+            const answersA = result.answers.filter(a => a.type === 'A');
+            expect(answersA.length).toBeGreaterThan(0);
+            answersA.forEach(a => {
+              expect(typeof a.data).toBe('string');
+              expect(/^\d+\.\d+\.\d+\.\d+$/.test(a.data)).toBe(true);
+            });
+          });
+        });
+      });
+
+      describe('external domain check', () => {
+        const EXTERNAL_LIST = [
           'video-assets.mathtag.com',
           'www.cloudflare.com',
           'cloudflare.com',
@@ -121,8 +142,8 @@ describe('Nameserver enter() actual name resolution tests', () => {
           'udemy.com',
         ];
 
-        LIST.forEach(domain => {
-          test(`should resolve ${domain} with A record`, async () => {
+        EXTERNAL_LIST.forEach(domain => {
+          test(`[external] should resolve ${domain} with A record`, async () => {
             const result = await ns.enter(domain, 'A');
             const answersA = result.answers.filter(a => a.type === 'A');
             expect(answersA.length).toBeGreaterThan(0);
@@ -176,6 +197,129 @@ describe('Nameserver enter() actual name resolution tests', () => {
           expect(denyHostRecord.ttl).toBe(2592000);
         });
       });
+    });
+  });
+
+  describe('Cache management tests', () => {
+    let ns2;
+
+    beforeAll(async () => {
+      ns2 = await new Nameserver().createServer({ transport: 'udp' });
+    });
+
+    afterAll(async () => {
+      ns2.terminate();
+    });
+
+    it('should store cache with expires field', async () => {
+      const domain = 'www.google.com';
+      const type = 'A';
+      await ns2.enter(domain, type);
+
+      const cacheKey = `${domain}-${type}`;
+      expect(ns2.cache[cacheKey]).toBeDefined();
+      expect(ns2.cache[cacheKey].expires).toBeDefined();
+      expect(typeof ns2.cache[cacheKey].expires).toBe('number');
+    });
+
+    it('should reuse cached entry before expiration', async () => {
+      const domain = 'www.amazon.com';
+      const type = 'A';
+
+      // First call stores in cache
+      const result1 = await ns2.enter(domain, type);
+      const cacheKey = `${domain}-${type}`;
+      const firstExpires = ns2.cache[cacheKey].expires;
+
+      // Small delay but well before expiration
+      await new Promise(resolve => {
+        setTimeout(resolve, 100);
+      });
+
+      // Second call should reuse cache
+      const result2 = await ns2.enter(domain, type);
+      const secondExpires = ns2.cache[cacheKey].expires;
+
+      // expires should be same (cache was reused)
+      expect(firstExpires).toBe(secondExpires);
+      // answers length should match
+      expect(result1.answers).toHaveLength(result2.answers.length);
+    });
+
+    it('should remove expired cache entries via clean()', async () => {
+      const domain = 'www.cloudflare.com';
+      const type = 'A';
+      const cacheKey = `${domain}-${type}`;
+
+      // Add to cache
+      await ns2.enter(domain, type);
+      expect(ns2.cache[cacheKey]).toBeDefined();
+
+      // Manually set expires to past time (in seconds)
+      ns2.cache[cacheKey].expires = Math.floor(Date.now() / 1000) - 1;
+
+      // Clean should remove it
+      ns2.clean();
+      expect(ns2.cache[cacheKey]).toBeUndefined();
+    });
+
+    it('should keep non-expired cache entries during clean()', async () => {
+      const domain = 'microsoft.com';
+      const type = 'A';
+      const cacheKey = `${domain}-${type}`;
+
+      // Add to cache
+      const result = await ns2.enter(domain, type);
+      expect(result.answers).toBeDefined();
+      expect(result.answers.length).toBeGreaterThan(0);
+
+      const originalExpires = ns2.cache[cacheKey].expires;
+      expect(originalExpires).toBeDefined();
+      expect(originalExpires).toBeGreaterThan(Math.floor(Date.now() / 1000));
+
+      // Run clean() - should not remove non-expired entries
+      ns2.clean();
+
+      // Verify cache still exists and expires value is unchanged
+      expect(ns2.cache[cacheKey]).toBeDefined();
+      expect(ns2.cache[cacheKey].expires).toBe(originalExpires);
+    });
+
+    it('should refetch expired cache on next query', async () => {
+      const domain = 'discord.com';
+      const type = 'A';
+      const cacheKey = `${domain}-${type}`;
+
+      // Initial query
+      await ns2.enter(domain, type);
+      const firstExpires = ns2.cache[cacheKey].expires;
+
+      // Wait a bit to ensure different second
+      await new Promise(resolve => {
+        setTimeout(resolve, 1100);
+      });
+
+      // Force expiration (in seconds)
+      ns2.cache[cacheKey].expires = Math.floor(Date.now() / 1000) - 1;
+
+      // Next query should refetch
+      await ns2.enter(domain, type);
+      const secondExpires = ns2.cache[cacheKey].expires;
+
+      expect(secondExpires).toBeGreaterThan(firstExpires);
+    });
+
+    it('should maintain answers and authorities in cache', async () => {
+      const domain = 'youtube.com';
+      const type = 'A';
+      const cacheKey = `${domain}-${type}`;
+
+      const result = await ns2.enter(domain, type);
+
+      expect(ns2.cache[cacheKey].answers).toBeDefined();
+      expect(Array.isArray(ns2.cache[cacheKey].answers)).toBe(true);
+      expect(ns2.cache[cacheKey].answers).toEqual(result.answers);
+      expect(ns2.cache[cacheKey].authorities).toBeDefined();
     });
   });
 });

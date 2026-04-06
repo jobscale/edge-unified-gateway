@@ -74,6 +74,7 @@ export class Nameserver {
   terminate() {
     clearInterval(this.intervalId);
     delete this.intervalId;
+    this.cache = {};
   }
 
   searchRecords(name, type, search, recordSet) {
@@ -139,18 +140,15 @@ export class Nameserver {
 
     const resolverViaCache = async dns => {
       const key = `${name}-${type}`;
-      if (!this.cache[key] || this.cache[key].expires < now) {
+      if (!this.cache[key]?.expires || this.cache[key].expires <= now) {
+        // no  cache or expired
         this.cache[key] = await resolver(name, type, dns, this.transport);
-        const recordA = this.cache[key].answers.filter(item => item.type === 'A');
-        recordA.forEach(item => {
-          // cache minimum 20 minutes and for client
-          const ttl = Number.parseInt(item.ttl, 10) || 0;
-          if (ttl < 1200) item.ttl = 1200;
-        });
+        const recordA = this.cache[key].answers?.filter(item => item.type === 'A') || [];
         const expiresIn = recordA.length
           ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
-          : 120;
+          : 121;
         this.cache[key].expires = now + expiresIn;
+        // logging
         const host = `${name} (${type}) ${findFirst(this.cache[key].answers)}`;
         if (!cache.access.get(host)) logger.info(JSON.stringify({ Query: host }));
         cache.access.set(host, Date.now());
@@ -159,8 +157,11 @@ export class Nameserver {
           cache.id = setTimeout(cache.clean, 60_000);
         }
       }
+      const ttlCache = now - this.cache[key].expires || 122;
+      const recordA = this.cache[key].answers?.filter(item => item.type === 'A') || [];
+      recordA.forEach(item => { item.ttl = ttlCache; });
       const { answers, authorities } = this.cache[key];
-      opts.answers.push(...answers);
+      opts.answers.push(...answers ?? []);
       opts.authorities = authorities;
     };
 
