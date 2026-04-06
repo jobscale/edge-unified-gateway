@@ -157,7 +157,7 @@ export class Nameserver {
           cache.id = setTimeout(cache.clean, 60_000);
         }
       }
-      const ttlCache = now - this.cache[key].expires || 122;
+      const ttlCache = this.cache[key].expires - now || 122;
       const recordA = this.cache[key].answers?.filter(item => item.type === 'A') || [];
       recordA.forEach(item => { item.ttl = ttlCache; });
       const { answers, authorities } = this.cache[key];
