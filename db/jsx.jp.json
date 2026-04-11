@@ -354,30 +354,6 @@
     "TTL": 122
   },
   {
-    "Name": "trixie",
-    "Type": "A",
-    "RData": "172.16.6.107",
-    "TTL": 122
-  },
-  {
-    "Name": "us",
-    "Type": "A",
-    "RData": "18.208.119.99",
-    "TTL": 122
-  },
-  {
-    "Name": "*.us",
-    "Type": "CNAME",
-    "RData": "us.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "vpn",
-    "Type": "A",
-    "RData": "18.208.119.99",
-    "TTL": 122
-  },
-  {
     "Name": "web",
     "Type": "CNAME",
     "RData": "web-tkl4.onrender.com.",
