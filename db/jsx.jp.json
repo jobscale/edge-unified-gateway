@@ -6,12 +6,6 @@
     "TTL": 122
   },
   {
-    "Name": "2603",
-    "Type": "A",
-    "RData": "18.208.119.99",
-    "TTL": 122
-  },
-  {
     "Name": "@",
     "Type": "MX",
     "RData": "10 mailu.jsx.jp.",
@@ -273,12 +267,6 @@
     "Name": "mail",
     "Type": "CNAME",
     "RData": "us.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "mailu",
-    "Type": "A",
-    "RData": "18.208.119.99",
     "TTL": 122
   },
   {
