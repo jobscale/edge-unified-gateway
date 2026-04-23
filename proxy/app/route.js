@@ -1,4 +1,5 @@
 const logger = console;
+import { Readable } from 'stream';
 
 const style = `<style>
 :root {
@@ -15,7 +16,7 @@ body {
 </style>`;
 const title = '<title>Special ECO System</title>';
 
-const httpProxy = async (req, res) => {
+export const httpProxy = async (req, res) => {
   logger.info('Proxying HTTP request to', req.url);
   const headers = { ...req.headers };
   const hopByHop = [
@@ -23,12 +24,13 @@ const httpProxy = async (req, res) => {
     'upgrade', 'te', 'trailer', 'host',
   ];
   for (const h of hopByHop) { delete headers[h]; }
+  const { method } = req;
+  const body = ['GET', 'HEAD'].includes(method) ? undefined : req;
   const upstream = await fetch(req.url, {
-    method: req.method,
-    headers,
-    body: req.method === 'GET' || req.method === 'HEAD' ? undefined : req,
+    method, headers, body, redirect: 'manual',
   });
-  upstream.body.on('error', e => {
+  const upstreamStream = Readable.from(upstream.body);
+  upstreamStream.on('error', e => {
     logger.error('Upstream stream error', e);
     res.destroy();
   });
@@ -42,7 +44,7 @@ const httpProxy = async (req, res) => {
   });
   res.writeHead(upstream.status);
   // ボディをそのまま pipe
-  upstream.body.pipe(res);
+  upstreamStream.pipe(res);
 };
 
 export const router = (req, res) => {
