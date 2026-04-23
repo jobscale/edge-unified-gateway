@@ -1,3 +1,5 @@
+const logger = console;
+
 const style = `<style>
 :root {
   color-scheme: dark light;
@@ -13,7 +15,46 @@ body {
 </style>`;
 const title = '<title>Special ECO System</title>';
 
+const httpProxy = async (req, res) => {
+  logger.info('Proxying HTTP request to', req.url);
+  const headers = { ...req.headers };
+  const hopByHop = [
+    'connection', 'proxy-connection', 'keep-alive', 'transfer-encoding',
+    'upgrade', 'te', 'trailer', 'host',
+  ];
+  for (const h of hopByHop) { delete headers[h]; }
+  const upstream = await fetch(req.url, {
+    method: req.method,
+    headers,
+    body: req.method === 'GET' || req.method === 'HEAD' ? undefined : req,
+  });
+  upstream.body.on('error', e => {
+    logger.error('Upstream stream error', e);
+    res.destroy();
+  });
+  res.on('error', e => {
+    logger.error('Client stream error', e);
+  });
+  // 上流レスポンスのヘッダをコピー
+  upstream.headers.forEach((value, key) => {
+    if (['transfer-encoding', 'connection'].includes(key)) return;
+    res.setHeader(key, value);
+  });
+  res.writeHead(upstream.status);
+  // ボディをそのまま pipe
+  upstream.body.pipe(res);
+};
+
 export const router = (req, res) => {
+  // HTTP プロキシ
+  if (req.url.startsWith('http://')) {
+    httpProxy(req, res).catch(() => {
+      res.writeHead(502);
+      res.end('Bad Gateway');
+    });
+    return;
+  }
+
   if (req.url === '/' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end(`${style}${title}<main><h1>Special ECO System</h1></main>`);
