@@ -198,30 +198,6 @@
     "TTL": 122
   },
   {
-    "Name": "*.in",
-    "Type": "CNAME",
-    "RData": "in.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "mac.in",
-    "Type": "A",
-    "RData": "172.16.179.208",
-    "TTL": 122
-  },
-  {
-    "Name": "noble.in",
-    "Type": "A",
-    "RData": "10.10.8.139",
-    "TTL": 122
-  },
-  {
-    "Name": "trixie.in",
-    "Type": "A",
-    "RData": "172.16.6.107",
-    "TTL": 122
-  },
-  {
     "Name": "jp",
     "Type": "A",
     "RData": "34.97.110.212",
