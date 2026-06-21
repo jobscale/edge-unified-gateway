@@ -1,11 +1,5 @@
 [
   {
-    "Name": "202603",
-    "Type": "A",
-    "RData": "54.209.0.54",
-    "TTL": 122
-  },
-  {
     "Name": "@",
     "Type": "A",
     "RData": "66.241.124.27",
@@ -147,6 +141,12 @@
     "Name": "*.mac",
     "Type": "CNAME",
     "RData": "mac.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "mx",
+    "Type": "A",
+    "RData": "54.209.0.54",
     "TTL": 122
   },
   {
