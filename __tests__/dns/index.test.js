@@ -39,14 +39,14 @@ describe('Nameserver enter() actual name resolution tests', () => {
           const result = await ns.enter('cdn.jsx.jp', 'A');
           const cname = result.answers.find(a => a.type === 'CNAME');
           expect(cname).toBeDefined();
-          expect(cname.data).toBe('jobscale.github.io.');
+          expect(cname.data).toBe('github.io');
         });
 
         it('should resolve MX record for jsx.jp', async () => {
           const result = await ns.enter('jsx.jp', 'MX');
           const mx = result.answers.find(a => a.type === 'MX');
           expect(mx).toBeDefined();
-          expect(mx.data.exchange).toMatch(/mailu\.jsx\.jp/);
+          expect(mx.data.exchange).toMatch(/mx\.jsx\.jp/);
           expect(Number.parseInt(mx.data.preference, 10)).toBeGreaterThan(0);
         });
       });

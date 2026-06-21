@@ -1,20 +1,26 @@
 [
   {
-    "Name": "20250705",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
+    "Name": "202603",
+    "Type": "A",
+    "RData": "54.209.0.54",
+    "TTL": 122
+  },
+  {
+    "Name": "@",
+    "Type": "A",
+    "RData": "66.241.124.27",
     "TTL": 122
   },
   {
     "Name": "@",
     "Type": "MX",
-    "RData": "10 mailu.jsx.jp.",
+    "RData": "10 mx.jsx.jp.",
     "TTL": 122
   },
   {
     "Name": "@",
     "Type": "TXT",
-    "RData": "v=spf1 mx a:mailu.jsx.jp ~all",
+    "RData": "v=spf1 mx a:smtp.jsx.jp ~all",
     "TTL": 122
   },
   {
@@ -36,6 +42,12 @@
     "TTL": 122
   },
   {
+    "Name": "_fly-ownership",
+    "Type": "TXT",
+    "RData": "app-dmpqp6d",
+    "TTL": 122
+  },
+  {
     "Name": "a",
     "Type": "A",
     "RData": "127.0.0.1",
@@ -54,114 +66,6 @@
     "TTL": 122
   },
   {
-    "Name": "black",
-    "Type": "A",
-    "RData": "172.16.6.22",
-    "TTL": 122
-  },
-  {
-    "Name": "*.black",
-    "Type": "CNAME",
-    "RData": "black.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "chat-mqtt-cool.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "clock.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "doom.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "fake.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "lineage.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "maintenance.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "mqtt.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "paycard.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "site.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "snow.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "tetris.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "timer.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "todo.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "todo-vue.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
-    "Name": "totp.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 122
-  },
-  {
     "Name": "web.cdn",
     "Type": "CNAME",
     "RData": "web-tkl4.onrender.com.",
@@ -177,6 +81,12 @@
     "Name": "dark",
     "Type": "A",
     "RData": "172.16.6.77",
+    "TTL": 122
+  },
+  {
+    "Name": "*.dark",
+    "Type": "CNAME",
+    "RData": "dark.jsx.jp.",
     "TTL": 122
   },
   {
@@ -240,12 +150,6 @@
     "TTL": 122
   },
   {
-    "Name": "mail",
-    "Type": "CNAME",
-    "RData": "us.jsx.jp.",
-    "TTL": 122
-  },
-  {
     "Name": "n100",
     "Type": "A",
     "RData": "172.16.6.66",
@@ -272,7 +176,7 @@
   {
     "Name": "proxy",
     "Type": "A",
-    "RData": "172.16.6.77",
+    "RData": "172.16.6.66",
     "TTL": 122
   },
   {
@@ -285,12 +189,6 @@
     "Name": "regale",
     "Type": "A",
     "RData": "110.4.133.233",
-    "TTL": 122
-  },
-  {
-    "Name": "s",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
     "TTL": 122
   },
   {
@@ -351,12 +249,6 @@
     "Name": "*.x",
     "Type": "CNAME",
     "RData": "x.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "xfce",
-    "Type": "A",
-    "RData": "172.16.6.55",
     "TTL": 122
   }
 ]
