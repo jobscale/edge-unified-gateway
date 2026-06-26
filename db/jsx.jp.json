@@ -72,33 +72,15 @@
     "TTL": 122
   },
   {
-    "Name": "dark",
-    "Type": "A",
-    "RData": "172.16.6.77",
-    "TTL": 122
-  },
-  {
     "Name": "*.dark",
     "Type": "CNAME",
     "RData": "dark.jsx.jp.",
     "TTL": 122
   },
   {
-    "Name": "dev",
-    "Type": "A",
-    "RData": "172.16.6.77",
-    "TTL": 122
-  },
-  {
     "Name": "*.dev",
     "Type": "CNAME",
     "RData": "dev.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "in",
-    "Type": "A",
-    "RData": "172.16.6.25",
     "TTL": 122
   },
   {
@@ -114,12 +96,6 @@
     "TTL": 122
   },
   {
-    "Name": "kali",
-    "Type": "A",
-    "RData": "172.16.6.33",
-    "TTL": 122
-  },
-  {
     "Name": "*.kali",
     "Type": "CNAME",
     "RData": "kali.jsx.jp.",
@@ -132,12 +108,6 @@
     "TTL": 122
   },
   {
-    "Name": "mac",
-    "Type": "A",
-    "RData": "172.16.6.88",
-    "TTL": 122
-  },
-  {
     "Name": "*.mac",
     "Type": "CNAME",
     "RData": "mac.jsx.jp.",
@@ -147,12 +117,6 @@
     "Name": "mx",
     "Type": "A",
     "RData": "54.209.0.54",
-    "TTL": 122
-  },
-  {
-    "Name": "n100",
-    "Type": "A",
-    "RData": "172.16.6.66",
     "TTL": 122
   },
   {
@@ -171,12 +135,6 @@
     "Name": "*.os",
     "Type": "CNAME",
     "RData": "os.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "proxy",
-    "Type": "A",
-    "RData": "172.16.6.66",
     "TTL": 122
   },
   {
@@ -204,12 +162,6 @@
     "TTL": 122
   },
   {
-    "Name": "stg",
-    "Type": "A",
-    "RData": "172.16.6.77",
-    "TTL": 122
-  },
-  {
     "Name": "*.stg",
     "Type": "CNAME",
     "RData": "stg.jsx.jp.",
@@ -222,27 +174,9 @@
     "TTL": 122
   },
   {
-    "Name": "wifi",
-    "Type": "A",
-    "RData": "172.16.6.77",
-    "TTL": 122
-  },
-  {
-    "Name": "win",
-    "Type": "A",
-    "RData": "172.16.6.99",
-    "TTL": 122
-  },
-  {
     "Name": "*.win",
     "Type": "CNAME",
     "RData": "win.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "x",
-    "Type": "A",
-    "RData": "172.16.6.66",
     "TTL": 122
   },
   {
