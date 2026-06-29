@@ -102,12 +102,6 @@
     "TTL": 122
   },
   {
-    "Name": "noble.lo",
-    "Type": "A",
-    "RData": "10.10.8.139",
-    "TTL": 122
-  },
-  {
     "Name": "*.mac",
     "Type": "CNAME",
     "RData": "mac.jsx.jp.",
@@ -123,12 +117,6 @@
     "Name": "*.n100",
     "Type": "CNAME",
     "RData": "n100.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "os",
-    "Type": "A",
-    "RData": "15.152.59.0",
     "TTL": 122
   },
   {
@@ -165,6 +153,12 @@
     "Name": "*.stg",
     "Type": "CNAME",
     "RData": "stg.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "*.us",
+    "Type": "CNAME",
+    "RData": "us.jsx.jp.",
     "TTL": 122
   },
   {

@@ -1,0 +1,416 @@
+[
+  {
+    "Name": "*",
+    "Type": "CNAME",
+    "RData": "us.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "20250705",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "@",
+    "Type": "A",
+    "RData": "66.241.124.27",
+    "TTL": 120
+  },
+  {
+    "Name": "@",
+    "Type": "MX",
+    "RData": "10 mx.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "@",
+    "Type": "TXT",
+    "RData": "v=spf1 mx a:smtp.jsx.jp ~all",
+    "TTL": 120
+  },
+  {
+    "Name": "_dmarc",
+    "Type": "TXT",
+    "RData": "v=DMARC1; p=reject; rua=mailto:admin@jsx.jp; ruf=mailto:admin@jsx.jp; adkim=s; aspf=s",
+    "TTL": 120
+  },
+  {
+    "Name": "jsx.jp._report._dmarc",
+    "Type": "TXT",
+    "RData": "v=DMARC1;",
+    "TTL": 120
+  },
+  {
+    "Name": "dkim._domainkey",
+    "Type": "TXT",
+    "RData": "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhVI0MapzYk5d+2P7DqTkMU0ObRZLOwsswenJvafmrDnIUBYPW9zGPqVMXuwQDIViHWiBksPSUo/UDd4+FrQSMa992sjzZfVbd+Kjm3O7iPtLAVjSl81a2dBYbp/NAblcVI4gjDcYess9vdMf4oaH2GiA+/eS3qgrnyj/M3ATNikgPfNnfpOP79z4mf3Sq0sm3h3Miy3OR88H+3bqEoM+L1PvzBTKmPcZF9EYf33tGhMQntEzwZAB+dHbT5l5l/oYrswoWv0lTuE87mmSvQqGFRuCLZAUWYpeVql6YOk17aqFySj8I11DS4f0YWNcWoRU9oAFiNfOBfnrvAB6Fvc2fQIDAQAB",
+    "TTL": 120
+  },
+  {
+    "Name": "_fly-ownership",
+    "Type": "TXT",
+    "RData": "app-dmpqp6d",
+    "TTL": 120
+  },
+  {
+    "Name": "a",
+    "Type": "A",
+    "RData": "127.0.0.1",
+    "TTL": 120
+  },
+  {
+    "Name": "*.a",
+    "Type": "CNAME",
+    "RData": "a.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "bastion",
+    "Type": "A",
+    "RData": "15.152.59.0",
+    "TTL": 120
+  },
+  {
+    "Name": "cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "chat-mqtt-cool.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "clock.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "doom.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "fake.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "lineage.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "maintenance.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "mqtt.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "paycard.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "site.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "snow.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "tetris.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "timer.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "todo.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "todo-vue.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "totp.cdn",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "web.cdn",
+    "Type": "CNAME",
+    "RData": "web-tkl4.onrender.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "cms",
+    "Type": "A",
+    "RData": "142.250.207.99",
+    "TTL": 120
+  },
+  {
+    "Name": "dark",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 120
+  },
+  {
+    "Name": "*.dark",
+    "Type": "CNAME",
+    "RData": "dark.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "dev",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 120
+  },
+  {
+    "Name": "*.dev",
+    "Type": "CNAME",
+    "RData": "dev.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "in",
+    "Type": "A",
+    "RData": "172.16.6.25",
+    "TTL": 120
+  },
+  {
+    "Name": "*.in",
+    "Type": "CNAME",
+    "RData": "in.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "dev.in",
+    "Type": "A",
+    "RData": "172.16.177.66",
+    "TTL": 120
+  },
+  {
+    "Name": "mac.in",
+    "Type": "A",
+    "RData": "172.16.179.208",
+    "TTL": 120
+  },
+  {
+    "Name": "os.in",
+    "Type": "A",
+    "RData": "172.31.29.190",
+    "TTL": 120
+  },
+  {
+    "Name": "trixie.in",
+    "Type": "A",
+    "RData": "172.16.6.107",
+    "TTL": 120
+  },
+  {
+    "Name": "us.in",
+    "Type": "A",
+    "RData": "10.0.1.230",
+    "TTL": 120
+  },
+  {
+    "Name": "win.in",
+    "Type": "A",
+    "RData": "172.16.179.227",
+    "TTL": 120
+  },
+  {
+    "Name": "jp",
+    "Type": "A",
+    "RData": "34.97.110.212",
+    "TTL": 120
+  },
+  {
+    "Name": "*.jp",
+    "Type": "CNAME",
+    "RData": "jp.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "kali",
+    "Type": "A",
+    "RData": "172.16.6.33",
+    "TTL": 120
+  },
+  {
+    "Name": "*.kali",
+    "Type": "CNAME",
+    "RData": "kali.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "mac",
+    "Type": "A",
+    "RData": "172.16.6.88",
+    "TTL": 120
+  },
+  {
+    "Name": "*.mac",
+    "Type": "CNAME",
+    "RData": "mac.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "mx",
+    "Type": "A",
+    "RData": "54.209.0.54",
+    "TTL": 120
+  },
+  {
+    "Name": "n100",
+    "Type": "A",
+    "RData": "172.16.6.66",
+    "TTL": 120
+  },
+  {
+    "Name": "*.n100",
+    "Type": "CNAME",
+    "RData": "n100.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "os",
+    "Type": "A",
+    "RData": "15.152.59.0",
+    "TTL": 120
+  },
+  {
+    "Name": "*.os",
+    "Type": "CNAME",
+    "RData": "os.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "proxy",
+    "Type": "A",
+    "RData": "172.16.6.66",
+    "TTL": 120
+  },
+  {
+    "Name": "*.proxy",
+    "Type": "CNAME",
+    "RData": "proxy.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "regale",
+    "Type": "A",
+    "RData": "110.4.133.233",
+    "TTL": 120
+  },
+  {
+    "Name": "s",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 120
+  },
+  {
+    "Name": "site",
+    "Type": "CNAME",
+    "RData": "web-tkl4.onrender.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "smtp",
+    "Type": "CNAME",
+    "RData": "smtp.mail.eu-west-1.awsapps.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "stg",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 120
+  },
+  {
+    "Name": "*.stg",
+    "Type": "CNAME",
+    "RData": "stg.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "us",
+    "Type": "A",
+    "RData": "54.209.0.54",
+    "TTL": 120
+  },
+  {
+    "Name": "*.us",
+    "Type": "CNAME",
+    "RData": "us.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "web",
+    "Type": "CNAME",
+    "RData": "web-tkl4.onrender.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "wifi",
+    "Type": "A",
+    "RData": "172.16.6.77",
+    "TTL": 120
+  },
+  {
+    "Name": "win",
+    "Type": "A",
+    "RData": "172.16.6.99",
+    "TTL": 120
+  },
+  {
+    "Name": "*.win",
+    "Type": "CNAME",
+    "RData": "win.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "x",
+    "Type": "A",
+    "RData": "172.16.6.66",
+    "TTL": 120
+  },
+  {
+    "Name": "*.x",
+    "Type": "CNAME",
+    "RData": "x.jsx.jp.",
+    "TTL": 120
+  }
+]
