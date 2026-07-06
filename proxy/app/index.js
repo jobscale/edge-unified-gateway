@@ -92,7 +92,7 @@ export const proxyConnect = (req, clientSocket, head) => {
       forward.write(
         `CONNECT ${host}:${port} HTTP/1.1\r\n` +
         `Host: ${host}:${port}\r\n` +
-        `X-Forwarded-For: ${ip}\r\n` +
+        `X-Remote-Address: ${ip}\r\n` +
         '\r\n',
       );
       if (head?.length) forward.write(head);

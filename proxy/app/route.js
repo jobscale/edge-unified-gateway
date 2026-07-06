@@ -2,10 +2,9 @@ const logger = console;
 import { Readable } from 'stream';
 
 const normalizeRemoteAddress = socket => socket?.remoteAddress?.replace(/^::ffff:/, '') || '';
-const appendForwardedFor = (headers, value) => {
+const appendRemoteAddress = (headers, value) => {
   if (!value) return headers;
-  const existing = headers['x-forwarded-for'];
-  headers['x-forwarded-for'] = existing ? `${existing}, ${value}` : value;
+  headers['x-remote-address'] = value;
   return headers;
 };
 
@@ -28,7 +27,7 @@ export const httpProxy = async (req, res) => {
   logger.info('Proxying HTTP request to', req.url);
   const headers = { ...req.headers };
   const clientIp = normalizeRemoteAddress(req?.socket);
-  appendForwardedFor(headers, clientIp);
+  appendRemoteAddress(headers, clientIp);
   req.headers = headers;
   const hopByHop = [
     'connection', 'proxy-connection', 'keep-alive', 'transfer-encoding',
