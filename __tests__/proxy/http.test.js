@@ -216,6 +216,56 @@ describe('httpProxy（ユニットテスト - fetch モック）', () => {
     expect(res.writeHead).toHaveBeenCalledWith(201);
   });
 
+  it('req.headers に x-forwarded-for を追加して上流に転送', async () => {
+    const mockResponseBody = Readable.from(['']);
+    global.fetch = jest.fn().mockResolvedValue({
+      status: 200,
+      headers: new Map([['content-type', 'text/plain']]),
+      body: mockResponseBody,
+    });
+
+    const req = {
+      url: 'http://example.com',
+      method: 'GET',
+      headers: {
+        'user-agent': 'test',
+      },
+      socket: {
+        remoteAddress: '203.0.113.10',
+      },
+    };
+
+    const res = {
+      setHeader: jest.fn(),
+      writeHead: jest.fn(),
+      destroy: jest.fn(),
+      end: jest.fn(),
+      write: jest.fn(() => true),
+      on: jest.fn(),
+      once: jest.fn(),
+      pipe: jest.fn(function(source) {
+        source.on('data', (chunk) => {
+          this.write(chunk);
+        });
+        source.on('end', () => {
+          this.end();
+        });
+        source.on('error', (err) => {
+          this.destroy(err);
+        });
+        return this;
+      }),
+    };
+
+    await new Promise((resolve) => {
+      httpProxy(req, res).then(resolve).catch(resolve);
+    });
+
+    const callArgs = global.fetch.mock.calls[0][1];
+    expect(req.headers).toHaveProperty('x-forwarded-for', '203.0.113.10');
+    expect(callArgs.headers).toHaveProperty('x-forwarded-for', '203.0.113.10');
+  });
+
   it('hop-by-hop ヘッダを削除', async () => {
     const mockResponseBody = Readable.from(['']);
     global.fetch = jest.fn().mockResolvedValue({

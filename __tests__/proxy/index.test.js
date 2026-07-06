@@ -124,6 +124,17 @@ describe('proxyConnect', () => {
       );
     });
 
+    it('転送先 CONNECT リクエストに X-Forwarded-For を付与する', async () => {
+      const client = makeClient('10.0.0.1');
+      proxyConnect(makeReq('app.internal.jsx.jp:443'), client, null);
+
+      await new Promise(r => { setImmediate(r); });
+
+      expect(mockForwardSocket.write).toHaveBeenCalledWith(
+        expect.stringContaining('X-Forwarded-For: 10.0.0.1'),
+      );
+    });
+
     it('head があれば転送ソケットへ書き込む', async () => {
       const client = makeClient('10.0.0.1');
       const head = Buffer.from('HEAD');
