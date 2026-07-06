@@ -53,14 +53,13 @@ const parseError = e => {
   const { code, address, port } = error;
   return `${code} ${address}:${port}`;
 };
-const normalizeRemoteAddress = socket => socket?.remoteAddress?.replace(/^::ffff:/, '') || '';
 export const swallow = e => ['ECONNRESET', 'EPIPE']
 .includes(e?.code) || logger.error(JSON.stringify({ 'Socket error:': parseError(e) }));
 
 export const proxyConnect = (req, clientSocket, head) => {
   clientSocket.on('error', swallow);
   const [host, port] = req.url.split(':');
-  const ip = normalizeRemoteAddress(clientSocket);
+  const ip = clientSocket.remoteAddress.replace(/^::ffff:/, '');
   if (!cache.access.get(host)) logger.info(JSON.stringify({ host, access: ip }));
   // cache stock or refresh
   cache.access.set(host, Date.now());
@@ -92,7 +91,6 @@ export const proxyConnect = (req, clientSocket, head) => {
       forward.write(
         `CONNECT ${host}:${port} HTTP/1.1\r\n` +
         `Host: ${host}:${port}\r\n` +
-        `X-Forwarded-For: ${ip}\r\n` +
         '\r\n',
       );
       if (head?.length) forward.write(head);
