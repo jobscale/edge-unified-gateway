@@ -74,97 +74,97 @@
   {
     "Name": "cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "chat-mqtt-cool.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "clock.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "doom.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "fake.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "lineage.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "maintenance.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "mqtt.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "paycard.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "site.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "snow.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "tetris.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "timer.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "todo.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "todo-vue.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
     "Name": "totp.cdn",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {
@@ -338,7 +338,7 @@
   {
     "Name": "s",
     "Type": "CNAME",
-    "RData": "github.io.",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {

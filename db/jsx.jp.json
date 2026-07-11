@@ -1,5 +1,11 @@
 [
   {
+    "Name": "20250705",
+    "Type": "CNAME",
+    "RData": "github.io.",
+    "TTL": 122
+  },
+  {
     "Name": "@",
     "Type": "A",
     "RData": "66.241.124.27",

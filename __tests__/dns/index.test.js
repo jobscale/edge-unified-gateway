@@ -39,7 +39,7 @@ describe('Nameserver enter() actual name resolution tests', () => {
           const result = await ns.enter('cdn.jsx.jp', 'A');
           const cname = result.answers.find(a => a.type === 'CNAME');
           expect(cname).toBeDefined();
-          expect(cname.data).toBe('github.io');
+          expect(cname.data).toBe('jobscale.github.io');
         });
 
         it('should resolve MX record for jsx.jp', async () => {
