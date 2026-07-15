@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+set -eu
+
+LIST=(
+  jsx.jp
+  www.jsx.jp
+  mqtt.jsx.jp
+  20250705.jsx.jp
+  cdn.jsx.jp
+  chat-mqtt-cool.cdn.jsx.jp
+  clock.cdn.jsx.jp
+  doom.cdn.jsx.jp
+  fake.cdn.jsx.jp
+  lineage.cdn.jsx.jp
+  maintenance.cdn.jsx.jp
+  mqtt.cdn.jsx.jp
+  paycard.cdn.jsx.jp
+  site.cdn.jsx.jp
+  snow.cdn.jsx.jp
+  tetris.cdn.jsx.jp
+  timer.cdn.jsx.jp
+  todo.cdn.jsx.jp
+  todo-vue.cdn.jsx.jp
+  totp.cdn.jsx.jp
+  s.jsx.jp
+)
+
+ssl() {
+  DOMAIN=$1
+  printf "SSL check %26s  " $DOMAIN
+
+  # get certificate expiration date
+  NOT_AFTER=$(echo | openssl s_client -connect "$DOMAIN":443 -servername "$DOMAIN" 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+  if [ -z "$NOT_AFTER" ]; then
+    echo -e "\e[31m[ERROR] failed to get certificate\e[0m"
+    return 1
+  fi
+  EXPIRES=$(TZ=Asia/Tokyo date -Iseconds -d "$NOT_AFTER" | sed 's/T/ /' | sed 's/+09/ +09/')
+
+  # convert current time and expiration time to epoch seconds (in seconds)
+  CURRENT_SEC=$(date +%s)
+  EXPIRE_SEC=$(date -d "$EXPIRES" +%s)
+
+  # calculate remaining days
+  REMAIN_DAYS=$(( (EXPIRE_SEC - CURRENT_SEC) / 86400 ))
+
+  # display results (red for less than 30 days, green for 30 days or more)
+  if [ "$REMAIN_DAYS" -lt 30 ]; then
+    echo -e "Expires: $EXPIRES (\e[1;31mat ${REMAIN_DAYS} days\e[0m) ⚠️"
+  else
+    echo -e "Expires: $EXPIRES (\e[32mat ${REMAIN_DAYS} days\e[0m)"
+  fi
+}
+
+main() {
+  for i in "${LIST[@]}"; do
+    ssl "$i"
+  done
+}
+
+main
