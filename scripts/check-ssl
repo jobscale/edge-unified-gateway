@@ -25,6 +25,18 @@ LIST=(
   s.jsx.jp
 )
 
+get_dn_value() {
+  local issuer="$1"
+  local field="$2"
+  local value
+
+  value=$(printf '%s\n' "$issuer" | sed -n "s/.*${field}[[:space:]]*=[[:space:]]*\"\([^\"]*\)\".*/\1/p")
+  if [ -z "$value" ]; then
+    value=$(printf '%s\n' "$issuer" | sed -n "s/.*${field}[[:space:]]*=[[:space:]]*\([^,]*\).*/\1/p")
+  fi
+  printf '%s' "$(printf '%s' "$value" | sed 's/^ *//; s/ *$//')"
+}
+
 ssl() {
   DOMAIN=$1
   printf "SSL check %26s  " $DOMAIN
@@ -49,6 +61,65 @@ ssl() {
     echo -e "Expires: $EXPIRES (\e[1;31mat ${REMAIN_DAYS} days\e[0m) ⚠️"
   else
     echo -e "Expires: $EXPIRES (\e[32mat ${REMAIN_DAYS} days\e[0m)"
+  fi
+
+  # get certificate chain and display intermediate and root CAs (shown on following lines)
+  CERTS=$(echo | openssl s_client -connect "$DOMAIN":443 -servername "$DOMAIN" -showcerts 2>/dev/null)
+  if [ -n "$CERTS" ]; then
+    TMPDIR=$(mktemp -d)
+    echo "$CERTS" | awk -v dir="$TMPDIR" '
+      BEGIN { n=0; out="" }
+      /-----BEGIN CERTIFICATE-----/ { out = sprintf("%s/cert.%d.pem", dir, ++n); print > out; next }
+      /-----END CERTIFICATE-----/ { print >> out; close(out); next }
+      { if (out != "") print >> out }
+    '
+
+    COUNT=$(ls -1 "$TMPDIR" 2>/dev/null | wc -l || true)
+    if [ "$COUNT" -ge 1 ]; then
+      # If server sends multiple certs, treat last as root and others as intermediates
+      if [ "$COUNT" -gt 1 ]; then
+        echo "  Intermediate CAs:"
+        for i in $(seq 2 $COUNT); do
+          ISSUER=$(openssl x509 -noout -issuer -in "$TMPDIR/cert.$i.pem" | sed 's/^issuer=//')
+          OU=$(get_dn_value "$ISSUER" OU)
+          if [ -n "$OU" ]; then
+            echo "    $OU"
+          else
+            O=$(get_dn_value "$ISSUER" O)
+            if [ -n "$O" ]; then
+              echo "    $O"
+            else
+              CN=$(get_dn_value "$ISSUER" CN)
+              if [ -n "$CN" ]; then
+                echo "    $CN"
+              else
+                echo "    (issuer info unavailable)"
+              fi
+            fi
+          fi
+        done
+      fi
+      echo "  Root CA:"
+      ISSUER=$(openssl x509 -noout -issuer -in "$TMPDIR/cert.$COUNT.pem" | sed 's/^issuer=//')
+      OU=$(get_dn_value "$ISSUER" OU)
+      if [ -n "$OU" ]; then
+        echo "    $OU"
+      else
+        O=$(get_dn_value "$ISSUER" O)
+        if [ -n "$O" ]; then
+          echo "    $O"
+        else
+          CN=$(get_dn_value "$ISSUER" CN)
+          if [ -n "$CN" ]; then
+            echo "    $CN"
+          else
+            echo "    (issuer info unavailable)"
+          fi
+        fi
+      fi
+    fi
+
+    rm -rf "$TMPDIR"
   fi
 }
 
