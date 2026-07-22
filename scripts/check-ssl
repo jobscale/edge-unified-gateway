@@ -14,7 +14,7 @@ LIST=(
   lineage.cdn.jsx.jp
   maintenance.cdn.jsx.jp
   mqtt.cdn.jsx.jp
-  paycard.cdn.jsx.jp
+  card.cdn.jsx.jp
   site.cdn.jsx.jp
   snow.cdn.jsx.jp
   tetris.cdn.jsx.jp
