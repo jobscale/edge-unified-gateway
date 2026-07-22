@@ -78,6 +78,12 @@
     "TTL": 120
   },
   {
+    "Name": "card.cdn",
+    "Type": "CNAME",
+    "RData": "jobscale.github.io.",
+    "TTL": 120
+  },
+  {
     "Name": "chat-mqtt-cool.cdn",
     "Type": "CNAME",
     "RData": "jobscale.github.io.",
@@ -115,12 +121,6 @@
   },
   {
     "Name": "mqtt.cdn",
-    "Type": "CNAME",
-    "RData": "jobscale.github.io.",
-    "TTL": 120
-  },
-  {
-    "Name": "paycard.cdn",
     "Type": "CNAME",
     "RData": "jobscale.github.io.",
     "TTL": 120
