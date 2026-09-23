@@ -16,8 +16,11 @@ const main = async () => {
     if (item.Name === 'us' || item.Name === 'os') return false;
     if (item.RData === 'jobscale.github.io.') return false;
     if (item.RData.match('amazonaws.com')) return false;
-    if (item.RData.match('acm-validations')) return false;
     if (item.RData.startsWith('172.16.6.')) return false;
+    if (item.RData.match('validations')) return false;
+    if (item.Name.match('challenge')) return false;
+    if (item.Name.match('ownership')) return false;
+    if (item.Name === '@' && item.Type === 'A') return false;
     logger.debug(JSON.stringify({ Name: item.Name, RData: item.RData }));
     return true;
   }).map(item => ({ ...item, TTL: 122 }));

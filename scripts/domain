@@ -6,6 +6,7 @@ domain() {
   -e ENV=${ENV:-dev} \
   -e LOG_LEVEL=${LOG_LEVEL:-debug} \
   -e DELETE=${DELETE-} \
+  -e MULTIPLE=${MULTIPLE-} \
   -e TYPE=$TYPE \
   -e DOMAIN=$DOMAIN \
   -e R_DATA=$R_DATA \

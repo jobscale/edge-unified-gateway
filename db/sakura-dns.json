@@ -80,7 +80,7 @@
   {
     "Name": "api",
     "Type": "CNAME",
-    "RData": "d-8h94fu9hfc.execute-api.ap-northeast-1.amazonaws.com.",
+    "RData": "d-qdux2uavxh.execute-api.us-east-1.amazonaws.com.",
     "TTL": 120
   },
   {
@@ -237,6 +237,18 @@
     "Name": "fly",
     "Type": "A",
     "RData": "66.241.124.27",
+    "TTL": 120
+  },
+  {
+    "Name": "_acme-challenge.fly",
+    "Type": "CNAME",
+    "RData": "fly.jsx.jp.dmpqp6d.flydns.net.",
+    "TTL": 120
+  },
+  {
+    "Name": "_fly-ownership.fly",
+    "Type": "TXT",
+    "RData": "app-dmpqp6d",
     "TTL": 120
   },
   {
@@ -463,8 +475,8 @@
   },
   {
     "Name": "www",
-    "Type": "A",
-    "RData": "13.35.78.9",
+    "Type": "CNAME",
+    "RData": "jobscale.github.io.",
     "TTL": 120
   },
   {

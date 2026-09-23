@@ -30,12 +30,6 @@
     "TTL": 122
   },
   {
-    "Name": "_fly-ownership",
-    "Type": "TXT",
-    "RData": "app-dmpqp6d",
-    "TTL": 122
-  },
-  {
     "Name": "a",
     "Type": "A",
     "RData": "127.0.0.1",
@@ -183,12 +177,6 @@
     "Name": "*.win",
     "Type": "CNAME",
     "RData": "win.jsx.jp.",
-    "TTL": 122
-  },
-  {
-    "Name": "www",
-    "Type": "A",
-    "RData": "13.35.78.9",
     "TTL": 122
   },
   {
