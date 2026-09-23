@@ -1,12 +1,6 @@
 [
   {
     "Name": "@",
-    "Type": "A",
-    "RData": "3.162.125.23",
-    "TTL": 122
-  },
-  {
-    "Name": "@",
     "Type": "MX",
     "RData": "10 mx.jsx.jp.",
     "TTL": 122
