@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -eu
+
+domain() {
+  docker run --rm \
+  -e ENV=${ENV:-dev} \
+  -e LOG_LEVEL=${LOG_LEVEL:-debug} \
+  -e DELETE=${DELETE-} \
+  -e TYPE=$TYPE \
+  -e DOMAIN=$DOMAIN \
+  -e R_DATA=$R_DATA \
+  -e TOKEN=$(date +%s) \
+  -e DNS_CONFIG=$(cat dns-config) \
+  -t ghcr.io/jobscale/sakura-dns \
+  | tee \
+    >(grep -e '^\[{' | jq . | tee db/sakura-dns.json >&1) \
+    >(grep -v -e '^\[{' >&2) \
+  >/dev/null
+}
+
+domain > /dev/null
+[[ -x scripts/filtering.js ]] && scripts/filtering.js
