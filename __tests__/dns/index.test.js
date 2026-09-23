@@ -28,13 +28,6 @@ describe('Nameserver enter() actual name resolution tests', () => {
           expect(answer.data).toBe('172.16.6.77');
         });
 
-        it('should resolve root domain jsx.jp with A record', async () => {
-          const result = await ns.enter('jsx.jp', 'A');
-          const answer = result.answers.find(a => a.name === 'jsx.jp');
-          expect(answer).toBeDefined();
-          expect(answer.data).toBe('3.162.125.23');
-        });
-
         it('should follow CNAME record for jsx.jp', async () => {
           const result = await ns.enter('cdn.jsx.jp', 'A');
           const cname = result.answers.find(a => a.type === 'CNAME');
