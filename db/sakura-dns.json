@@ -14,7 +14,7 @@
   {
     "Name": "@",
     "Type": "A",
-    "RData": "66.241.124.27",
+    "RData": "3.162.125.23",
     "TTL": 120
   },
   {
@@ -27,6 +27,18 @@
     "Name": "@",
     "Type": "TXT",
     "RData": "v=spf1 mx a:smtp.jsx.jp ~all",
+    "TTL": 120
+  },
+  {
+    "Name": "_1d53ea0fa471395ad1bdf700f5b12ee5",
+    "Type": "CNAME",
+    "RData": "_f52059b350dccfa330e3fcdb0dd15959.jkddzztszm.acm-validations.aws.",
+    "TTL": 120
+  },
+  {
+    "Name": "_a1ac2f355a1a080f18269fcb24928e98",
+    "Type": "CNAME",
+    "RData": "_351ae33641fa4453022a921004ba69c4.jkddzztszm.acm-validations.aws.",
     "TTL": 120
   },
   {
@@ -63,6 +75,12 @@
     "Name": "*.a",
     "Type": "CNAME",
     "RData": "a.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "api",
+    "Type": "CNAME",
+    "RData": "d-8h94fu9hfc.execute-api.ap-northeast-1.amazonaws.com.",
     "TTL": 120
   },
   {
@@ -198,9 +216,27 @@
     "TTL": 120
   },
   {
+    "Name": "dev-api",
+    "Type": "CNAME",
+    "RData": "d-re5mbcxjmk.execute-api.us-east-1.amazonaws.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "dev-front",
+    "Type": "A",
+    "RData": "3.167.112.88",
+    "TTL": 120
+  },
+  {
     "Name": "*.dev",
     "Type": "CNAME",
     "RData": "dev.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "fly",
+    "Type": "A",
+    "RData": "66.241.124.27",
     "TTL": 120
   },
   {
@@ -342,6 +378,12 @@
     "TTL": 120
   },
   {
+    "Name": "serverless",
+    "Type": "CNAME",
+    "RData": "d-dx7pmgomcj.execute-api.us-east-1.amazonaws.com.",
+    "TTL": 120
+  },
+  {
     "Name": "site",
     "Type": "CNAME",
     "RData": "web-tkl4.onrender.com.",
@@ -357,6 +399,24 @@
     "Name": "stg",
     "Type": "A",
     "RData": "172.16.6.77",
+    "TTL": 120
+  },
+  {
+    "Name": "stg-front",
+    "Type": "A",
+    "RData": "52.85.193.20",
+    "TTL": 120
+  },
+  {
+    "Name": "stg-serverless",
+    "Type": "CNAME",
+    "RData": "d-tb40sfprv1.execute-api.ap-northeast-1.amazonaws.com.",
+    "TTL": 120
+  },
+  {
+    "Name": "stg-zipcode",
+    "Type": "CNAME",
+    "RData": "d-9npdoigvo1.execute-api.ap-northeast-1.amazonaws.com.",
     "TTL": 120
   },
   {
@@ -399,6 +459,12 @@
     "Name": "*.win",
     "Type": "CNAME",
     "RData": "win.jsx.jp.",
+    "TTL": 120
+  },
+  {
+    "Name": "www",
+    "Type": "A",
+    "RData": "13.35.78.9",
     "TTL": 120
   },
   {

@@ -1,14 +1,8 @@
 [
   {
-    "Name": "20250705",
-    "Type": "CNAME",
-    "RData": "github.io.",
-    "TTL": 122
-  },
-  {
     "Name": "@",
     "Type": "A",
-    "RData": "66.241.124.27",
+    "RData": "3.162.125.23",
     "TTL": 122
   },
   {
@@ -84,9 +78,21 @@
     "TTL": 122
   },
   {
+    "Name": "dev-front",
+    "Type": "A",
+    "RData": "3.167.112.88",
+    "TTL": 122
+  },
+  {
     "Name": "*.dev",
     "Type": "CNAME",
     "RData": "dev.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "fly",
+    "Type": "A",
+    "RData": "66.241.124.27",
     "TTL": 122
   },
   {
@@ -156,6 +162,12 @@
     "TTL": 122
   },
   {
+    "Name": "stg-front",
+    "Type": "A",
+    "RData": "52.85.193.20",
+    "TTL": 122
+  },
+  {
     "Name": "*.stg",
     "Type": "CNAME",
     "RData": "stg.jsx.jp.",
@@ -177,6 +189,12 @@
     "Name": "*.win",
     "Type": "CNAME",
     "RData": "win.jsx.jp.",
+    "TTL": 122
+  },
+  {
+    "Name": "www",
+    "Type": "A",
+    "RData": "13.35.78.9",
     "TTL": 122
   },
   {

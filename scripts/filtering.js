@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from 'fs';
 
 const logger = new Proxy(console, {
@@ -13,6 +15,8 @@ const main = async () => {
     if (item.Name === '*' || item.Name === 'in' || item.Name.endsWith('.in')) return false;
     if (item.Name === 'us' || item.Name === 'os') return false;
     if (item.RData === 'jobscale.github.io.') return false;
+    if (item.RData.match('amazonaws.com')) return false;
+    if (item.RData.match('acm-validations')) return false;
     if (item.RData.startsWith('172.16.6.')) return false;
     logger.debug(JSON.stringify({ Name: item.Name, RData: item.RData }));
     return true;
