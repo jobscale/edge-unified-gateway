@@ -11,7 +11,7 @@ domain() {
   -e DOMAIN=$DOMAIN \
   -e R_DATA=$R_DATA \
   -e TOKEN=$(date +%s) \
-  -e DNS_CONFIG=$(cat dns-config) \
+  -e DNS_CONFIG=$(cat ~/_/infra/dns-config) \
   -t ghcr.io/jobscale/sakura-dns \
   | tee \
     >(grep -e '^\[{' | jq . | tee db/sakura-dns.json >&1) \

@@ -66,12 +66,6 @@
     "TTL": 122
   },
   {
-    "Name": "dev-front",
-    "Type": "A",
-    "RData": "3.167.112.88",
-    "TTL": 122
-  },
-  {
     "Name": "*.dev",
     "Type": "CNAME",
     "RData": "dev.jsx.jp.",
@@ -147,12 +141,6 @@
     "Name": "smtp",
     "Type": "CNAME",
     "RData": "smtp.mail.eu-west-1.awsapps.com.",
-    "TTL": 122
-  },
-  {
-    "Name": "stg-front",
-    "Type": "A",
-    "RData": "52.85.193.20",
     "TTL": 122
   },
   {

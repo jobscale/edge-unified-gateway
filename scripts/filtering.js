@@ -21,6 +21,8 @@ const main = async () => {
     if (item.Name.match('challenge')) return false;
     if (item.Name.match('ownership')) return false;
     if (item.Name === '@' && item.Type === 'A') return false;
+    if (item.Name === 'stg' && item.Type === 'A') return false;
+    if (item.Name === 'dev' && item.Type === 'A') return false;
     logger.debug(JSON.stringify({ Name: item.Name, RData: item.RData }));
     return true;
   }).map(item => ({ ...item, TTL: 122 }));
