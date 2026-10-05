@@ -14,7 +14,7 @@
   {
     "Name": "@",
     "Type": "A",
-    "RData": "18.172.52.93",
+    "RData": "99.84.48.57",
     "TTL": 120
   },
   {
@@ -80,7 +80,7 @@
   {
     "Name": "api",
     "Type": "CNAME",
-    "RData": "d-qdux2uavxh.execute-api.us-east-1.amazonaws.com.",
+    "RData": "d-xw9gc9c1v7.execute-api.ap-northeast-1.amazonaws.com.",
     "TTL": 120
   },
   {
@@ -211,20 +211,14 @@
   },
   {
     "Name": "dev",
-    "Type": "A",
-    "RData": "13.35.78.9",
+    "Type": "CNAME",
+    "RData": "dz32y3jaorwml.cloudfront.net.",
     "TTL": 120
   },
   {
     "Name": "dev-api",
     "Type": "CNAME",
     "RData": "d-re5mbcxjmk.execute-api.us-east-1.amazonaws.com.",
-    "TTL": 120
-  },
-  {
-    "Name": "*.dev",
-    "Type": "CNAME",
-    "RData": "dev.jsx.jp.",
     "TTL": 120
   },
   {
@@ -398,25 +392,19 @@
   {
     "Name": "stg",
     "Type": "A",
-    "RData": "52.85.193.9",
+    "RData": "99.84.48.57",
     "TTL": 120
   },
   {
     "Name": "stg-api",
     "Type": "CNAME",
-    "RData": "d-u068r0bjvf.execute-api.ap-northeast-1.amazonaws.com.",
+    "RData": "d-dunwvglf58.execute-api.ap-northeast-3.amazonaws.com.",
     "TTL": 120
   },
   {
     "Name": "stg-zipcode",
     "Type": "CNAME",
     "RData": "d-9npdoigvo1.execute-api.ap-northeast-1.amazonaws.com.",
-    "TTL": 120
-  },
-  {
-    "Name": "*.stg",
-    "Type": "CNAME",
-    "RData": "stg.jsx.jp.",
     "TTL": 120
   },
   {

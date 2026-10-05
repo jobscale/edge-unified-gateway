@@ -66,9 +66,9 @@
     "TTL": 122
   },
   {
-    "Name": "*.dev",
+    "Name": "dev",
     "Type": "CNAME",
-    "RData": "dev.jsx.jp.",
+    "RData": "dz32y3jaorwml.cloudfront.net.",
     "TTL": 122
   },
   {
@@ -141,12 +141,6 @@
     "Name": "smtp",
     "Type": "CNAME",
     "RData": "smtp.mail.eu-west-1.awsapps.com.",
-    "TTL": 122
-  },
-  {
-    "Name": "*.stg",
-    "Type": "CNAME",
-    "RData": "stg.jsx.jp.",
     "TTL": 122
   },
   {

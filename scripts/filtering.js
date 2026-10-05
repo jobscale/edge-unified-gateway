@@ -23,7 +23,7 @@ const main = async () => {
     if (item.Name === '@' && item.Type === 'A') return false;
     if (item.Name === 'stg' && item.Type === 'A') return false;
     if (item.Name === 'dev' && item.Type === 'A') return false;
-    logger.debug(JSON.stringify({ Name: item.Name, RData: item.RData }));
+    logger.debug(JSON.stringify({ Type: item.Type.padStart(5), Name: item.Name, RData: item.RData }));
     return true;
   }).map(item => ({ ...item, TTL: 122 }));
   fs.writeFileSync('db/jsx.jp.json', `${JSON.stringify(filteredData, null, 2)}\n`, 'utf8');
