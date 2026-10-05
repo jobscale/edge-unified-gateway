@@ -211,8 +211,8 @@
   },
   {
     "Name": "dev",
-    "Type": "CNAME",
-    "RData": "dz32y3jaorwml.cloudfront.net.",
+    "Type": "A",
+    "RData": "99.84.48.57",
     "TTL": 120
   },
   {

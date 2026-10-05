@@ -18,11 +18,10 @@ const main = async () => {
     if (item.RData.match('amazonaws.com')) return false;
     if (item.RData.startsWith('172.16.6.')) return false;
     if (item.RData.match('validations')) return false;
+    if (item.RData.match('cloudfront')) return false;
     if (item.Name.match('challenge')) return false;
     if (item.Name.match('ownership')) return false;
-    if (item.Name === '@' && item.Type === 'A') return false;
-    if (item.Name === 'stg' && item.Type === 'A') return false;
-    if (item.Name === 'dev' && item.Type === 'A') return false;
+    if (['@', 'stg', 'dev'].includes(item.Name) && item.Type === 'A') return false;
     logger.debug(JSON.stringify({ Type: item.Type.padStart(5), Name: item.Name, RData: item.RData }));
     return true;
   }).map(item => ({ ...item, TTL: 122 }));

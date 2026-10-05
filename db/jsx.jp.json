@@ -66,12 +66,6 @@
     "TTL": 122
   },
   {
-    "Name": "dev",
-    "Type": "CNAME",
-    "RData": "dz32y3jaorwml.cloudfront.net.",
-    "TTL": 122
-  },
-  {
     "Name": "fly",
     "Type": "A",
     "RData": "66.241.124.27",
