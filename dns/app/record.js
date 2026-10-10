@@ -8,7 +8,10 @@ const logger = new Proxy(console, {
 });
 
 export const forwarder = ['8.8.8.8', '8.8.4.4'];
-export const glueNS = ['NS1.GSLB13.SAKURA.NE.JP', 'NS2.GSLB13.SAKURA.NE.JP'];
+export const glueNS = [
+  'amit.ns.cloudflare.com.',
+  'melina.ns.cloudflare.com.',
+];
 export const authority = {
   name: 'jp',
   type: 'SOA',
