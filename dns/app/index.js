@@ -1,25 +1,12 @@
 import fs from 'fs/promises';
 import dnsPacket from 'dns-packet';
+import { formatTimestamp } from '@jobscale/timestamp';
 import { resolver } from './resolver.js';
 import {
   searches, records, denys, denyAnswer, forwarder, glueNS, authority,
 } from './record.js';
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
-
-const formatTimestamp = (ts = Date.now(), withoutTimezone = false) => {
-  const timestamp = new Intl.DateTimeFormat('sv-SE', {
-    timeZone: 'Asia/Tokyo',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  }).format(new Date(ts));
-  if (withoutTimezone) return timestamp;
-  return `${timestamp}+09:00`;
-};
 
 const logger = new Proxy(console, {
   get(target, property) {

@@ -1,24 +1,11 @@
 import net from 'net';
 import dgram from 'dgram';
+import { formatTimestamp } from '@jobscale/timestamp';
 import { Nameserver } from './app/index.js';
 
 const JEST_TEST = Object.keys(process.env).filter(v => v.toLowerCase().match('jest')).length;
 const DNS_BIND = process.env.DNS_BIND || '0.0.0.0';
 const DNS_PORT = Number.parseInt(process.env.DNS_PORT, 10) || 53;
-
-const formatTimestamp = (ts = Date.now(), withoutTimezone = false) => {
-  const timestamp = new Intl.DateTimeFormat('sv-SE', {
-    timeZone: 'Asia/Tokyo',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  }).format(new Date(ts));
-  if (withoutTimezone) return timestamp;
-  return `${timestamp}+09:00`;
-};
 
 const logger = new Proxy(console, {
   get(target, property) {
