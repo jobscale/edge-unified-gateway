@@ -132,7 +132,7 @@ export class Nameserver {
         this.cache[key] = await resolver(name, type, dns, this.transport);
         const recordA = this.cache[key].answers?.filter(item => item.type === 'A') || [];
         const expiresIn = recordA.length
-          ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 1200)
+          ? Math.max(...this.cache[key].answers.map(item => item.ttl ?? 0), 122)
           : 121;
         this.cache[key].expires = now + expiresIn;
         // logging
