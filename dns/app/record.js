@@ -41,7 +41,7 @@ export const records = {};
 
 const setupSearch = (search, record) => {
   dbList.find(db => db.search === search).record.forEach(item => {
-    const { Name: name, Type: type, RData: data, TTL: ttl } = item;
+    const { name, type, content: data, ttl } = item;
     if (!record[name]) record[name] = [];
     if (record[name].find(v => v.type.toUpperCase() === 'CNAME')) {
       logger.warn(JSON.stringify({ 'Already CNAME': item }));

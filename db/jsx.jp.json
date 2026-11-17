@@ -1,26 +1,548 @@
 [
   {
-    "Name": "@",
-    "Type": "MX",
-    "RData": "10 mx.jsx.jp.",
-    "TTL": 122
+    "name": "jsx.jp",
+    "type": "A",
+    "content": "99.84.48.57",
+    "ttl": 1,
+    "proxied": true
   },
   {
-    "Name": "@",
-    "Type": "TXT",
-    "RData": "v=spf1 mx a:smtp.jsx.jp ~all",
-    "TTL": 122
+    "name": "jsx.jp",
+    "type": "NS",
+    "content": "ns1.jsx.jp",
+    "ttl": 120,
+    "proxied": false
   },
   {
-    "Name": "_dmarc",
-    "Type": "TXT",
-    "RData": "v=DMARC1; p=reject; rua=mailto:admin@jsx.jp; ruf=mailto:admin@jsx.jp; adkim=s; aspf=s",
-    "TTL": 122
+    "name": "jsx.jp",
+    "type": "NS",
+    "content": "ns3.jsx.jp",
+    "ttl": 120,
+    "proxied": false
   },
   {
-    "Name": "mx",
-    "Type": "A",
-    "RData": "54.209.0.54",
-    "TTL": 122
+    "name": "jsx.jp",
+    "type": "NS",
+    "content": "ns2.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.jsx.jp",
+    "type": "CNAME",
+    "content": "us.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "20250705.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "_1d53ea0fa471395ad1bdf700f5b12ee5.jsx.jp",
+    "type": "CNAME",
+    "content": "_f52059b350dccfa330e3fcdb0dd15959.jkddzztszm.acm-validations.aws",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "_a1ac2f355a1a080f18269fcb24928e98.jsx.jp",
+    "type": "CNAME",
+    "content": "_351ae33641fa4453022a921004ba69c4.jkddzztszm.acm-validations.aws",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "a.jsx.jp",
+    "type": "A",
+    "content": "127.0.0.1",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.a.jsx.jp",
+    "type": "CNAME",
+    "content": "a.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "api.jsx.jp",
+    "type": "CNAME",
+    "content": "d-xw9gc9c1v7.execute-api.ap-northeast-1.amazonaws.com",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "bastion.jsx.jp",
+    "type": "A",
+    "content": "15.152.59.0",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "card.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "chat-mqtt-cool.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "clock.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "doom.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "fake.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "lineage.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "maintenance.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "mqtt.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "site.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "snow.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "tetris.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "timer.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "todo.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "todo-vue.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "totp.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "web.cdn.jsx.jp",
+    "type": "CNAME",
+    "content": "web-tkl4.onrender.com",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "cms.jsx.jp",
+    "type": "A",
+    "content": "142.250.207.99",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "dark.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.77",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.dark.jsx.jp",
+    "type": "CNAME",
+    "content": "dark.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "dev.jsx.jp",
+    "type": "A",
+    "content": "18.65.148.21",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "dev-api.jsx.jp",
+    "type": "CNAME",
+    "content": "d-re5mbcxjmk.execute-api.us-east-1.amazonaws.com",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "fly.jsx.jp",
+    "type": "A",
+    "content": "66.241.124.27",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "_acme-challenge.fly.jsx.jp",
+    "type": "CNAME",
+    "content": "fly.jsx.jp.dmpqp6d.flydns.net",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "_fly-ownership.fly.jsx.jp",
+    "type": "TXT",
+    "content": "\"app-dmpqp6d\"",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "in.jsx.jp",
+    "type": "A",
+    "content": "10.0.2.15",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.in.jsx.jp",
+    "type": "CNAME",
+    "content": "in.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "dev.in.jsx.jp",
+    "type": "A",
+    "content": "172.16.177.66",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "mac.in.jsx.jp",
+    "type": "A",
+    "content": "172.16.179.208",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "os.in.jsx.jp",
+    "type": "A",
+    "content": "172.31.29.190",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "trixie.in.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.107",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "us.in.jsx.jp",
+    "type": "A",
+    "content": "10.0.1.230",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "win.in.jsx.jp",
+    "type": "A",
+    "content": "172.16.179.227",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "jp.jsx.jp",
+    "type": "A",
+    "content": "34.97.110.212",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.jp.jsx.jp",
+    "type": "CNAME",
+    "content": "jp.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "kali.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.33",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.kali.jsx.jp",
+    "type": "CNAME",
+    "content": "kali.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "mac.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.88",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.mac.jsx.jp",
+    "type": "CNAME",
+    "content": "mac.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "mx.jsx.jp",
+    "type": "A",
+    "content": "54.209.0.54",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "n100.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.66",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.n100.jsx.jp",
+    "type": "CNAME",
+    "content": "n100.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "nginx.jsx.jp",
+    "type": "CNAME",
+    "content": "us.jsx.jp",
+    "ttl": 1,
+    "proxied": false
+  },
+  {
+    "name": "ns1.jsx.jp",
+    "type": "A",
+    "content": "54.209.0.54",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "ns2.jsx.jp",
+    "type": "A",
+    "content": "54.209.0.54",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "ns3.jsx.jp",
+    "type": "A",
+    "content": "54.209.0.54",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "os.jsx.jp",
+    "type": "A",
+    "content": "15.152.59.0",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.os.jsx.jp",
+    "type": "CNAME",
+    "content": "os.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "proxy.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.66",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.proxy.jsx.jp",
+    "type": "CNAME",
+    "content": "proxy.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "regale.jsx.jp",
+    "type": "A",
+    "content": "110.4.133.233",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "s.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "site.jsx.jp",
+    "type": "CNAME",
+    "content": "web-tkl4.onrender.com",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "smtp.jsx.jp",
+    "type": "CNAME",
+    "content": "smtp.mail.eu-west-1.awsapps.com",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "stg.jsx.jp",
+    "type": "A",
+    "content": "18.65.148.27",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "stg-api.jsx.jp",
+    "type": "CNAME",
+    "content": "d-dunwvglf58.execute-api.ap-northeast-3.amazonaws.com",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "stg-zipcode.jsx.jp",
+    "type": "CNAME",
+    "content": "d-9npdoigvo1.execute-api.ap-northeast-1.amazonaws.com",
+    "ttl": 1,
+    "proxied": true
+  },
+  {
+    "name": "us.jsx.jp",
+    "type": "A",
+    "content": "54.209.0.54",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.us.jsx.jp",
+    "type": "CNAME",
+    "content": "us.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "web.jsx.jp",
+    "type": "CNAME",
+    "content": "web-tkl4.onrender.com",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "wifi.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.77",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "win.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.99",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.win.jsx.jp",
+    "type": "CNAME",
+    "content": "win.jsx.jp",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "www.jsx.jp",
+    "type": "CNAME",
+    "content": "jobscale.github.io",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "x.jsx.jp",
+    "type": "A",
+    "content": "172.16.6.66",
+    "ttl": 120,
+    "proxied": false
+  },
+  {
+    "name": "*.x.jsx.jp",
+    "type": "CNAME",
+    "content": "x.jsx.jp",
+    "ttl": 120,
+    "proxied": false
   }
 ]
